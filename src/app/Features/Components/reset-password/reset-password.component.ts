@@ -20,6 +20,8 @@ export class ResetPasswordComponent {
     resetForm!: FormGroup;
     EmailSent:boolean=false;
 
+    loading:boolean=false;
+
      constructor(private fb: FormBuilder,private loaderser:LoaderService) {
     this.resetForm = this.fb.group({
       email: ['', [Validators.required, Validators.email]]
@@ -33,11 +35,15 @@ export class ResetPasswordComponent {
       // Add your password reset logic here
       alert('Password reset link sent to ' + email);
 
+      this.loading=true;
+
       this.loaderser.show();
 
       setTimeout(() => {
 
         this.EmailSent=true;
+
+        this.loading=false;
 
         this.loaderser.hide();
         
