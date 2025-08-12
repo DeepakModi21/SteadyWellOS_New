@@ -1,0 +1,301 @@
+
+
+.login-container {
+      min-height: 100vh;
+      // background: linear-gradient(135deg, #2c5f7a 0%, #4a7c95 100%);
+      background: #284B5F;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+      font-family: 'Roboto', sans-serif;
+      font-family: Optima;
+      box-sizing: border-box;
+
+    }
+
+    .login-card {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      max-width: 400px;
+      width: 100%;
+    }
+
+    .header {
+      text-align: center;
+      color: white;
+      margin-bottom: 9px;
+    }
+
+    .logo {
+      margin-bottom: 15px;
+      color: #FCFBF2;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .logo .material-icon
+    {
+      font-size: 42px;
+    }
+
+    .logo .logoHeader
+    {
+      font-family: Optima;
+font-weight: 600;
+font-style: Bold;
+font-size: 28px;
+line-height: 100%;
+letter-spacing: 0%;
+
+    }
+
+    .heart-icon {
+      font-size: 48px;
+      width: 48px;
+      height: 48px;
+      color: white;
+    }
+
+    .app-title {
+      font-size: 24px;
+      font-weight: 400;
+      margin: 10px 0 5px 0;
+      letter-spacing: 0.5px;
+    }
+
+    .subtitle {
+      font-family: Optima;
+font-weight: 400;
+font-style: Normal;
+font-size: 12.5px;
+line-height: 100%;
+letter-spacing: 1px;
+text-align: center;
+
+    }
+
+    .signin-card {
+      max-width: 609px;
+      max-height: 495px;
+      overflow: hidden;
+      padding: 0;
+      border-radius: 8px;
+      background-color: #FCFBF2 !important;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+      border: 1px solid #CCCCCC;
+    }
+
+    .signin-card mat-card-content {
+      padding: 23px 32px;
+    }
+
+    .signin-header {
+      margin-bottom: 24px;
+    }
+
+    .signin-header h2 {
+   font-family: Optima;
+font-weight: 550;
+font-style: Medium;
+font-size: 25px;
+margin: 0;
+line-height: 38px;
+letter-spacing: 0%;
+color: #1A202C;
+
+    }
+
+    .signin-subtitle {
+      font-size: 14px;
+      color: #666;
+      margin: 0;
+    }
+
+    .full-width {
+      width: 100%;
+      
+    }
+
+    .formRow
+    {
+      display: flex;
+      min-width: 380px;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .formRow:first-child
+    {
+      margin-bottom: 16px;
+    }
+
+    .signin-card ::ng-deep .mat-mdc-form-field
+    {
+      margin-bottom: 10px;
+       height: 40px;
+      //  overflow: hidden;
+       background-color: white !important;
+       border-radius: 6px;
+      //  border: 0.5px solid grey !important;
+    }
+
+
+    .signin-card ::ng-deep .mdc-text-field--outlined:not(.mdc-text-field--disabled) .mat-mdc-notch-piece {
+    border-color: #d7d9df;
+    border-width: var(--mdc-outlined-text-field-outline-width, 1px);
+}
+    
+
+    .mat_label
+    {
+      // margin-bottom: 5px;
+      font-family: Optima;
+font-weight: 400;
+font-style: Medium;
+font-size: 14px;
+// leading-trim: NO
+
+    }
+
+      .signin-card::ng-deep .mat-mdc-text-field-wrapper
+    {
+      padding: 0px 8px 0px 1px !important;
+    }
+
+      .signin-card ::ng-deep .mat-mdc-form-field-infix
+    {
+      height: 100%;
+      min-height: 40px;
+      display: flex;
+      justify-content: center;
+      padding: 0px 10px !important;
+    }
+
+      .signin-card ::ng-deep .mat-mdc-text-field-wrapper
+    {
+      height: 100% !important;
+    }
+
+    .signin-card ::ng-deep .mat-mdc-input-element
+    {
+      font-family: Optima;
+font-weight: 400;
+font-style: Normal;
+font-size: 16px;
+// leading-trim: NONE;
+line-height: 100%;
+letter-spacing: 0%;
+
+
+    }
+
+    .signin-card input::placeholder
+    {
+      color:#a7b0bd !important;
+    }
+
+    .form-options {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin: 0px 0 24px 0;
+    }
+
+    .forgot-password {
+      color: #1976d2;
+      text-decoration: none;
+      font-size: 14px;
+    }
+
+    .forgot-password:hover {
+      text-decoration: underline;
+    }
+
+    .signin-button {  
+      width: 100%;
+      height: 33px;
+      font-size: 14px;
+      font-weight: 500;
+      background-color: #40728c;
+      color: white;
+      border-radius: 4px;
+    }
+
+    .action_button ::ng-deep .mat-mdc-raised-button:not(:disabled)
+    {
+           background-color: #40728c;
+           color: white;
+    }
+
+    .signin-button:hover {
+      background-color: #245066;
+    }
+
+    .support-text {
+      color: white;
+      font-size: 16px;
+      text-align: center;
+      margin-top: 20px;
+      opacity: 0.9;
+    }
+
+    .support-text a {
+      color: white;
+      text-decoration: none;
+    }
+
+    .support-text a:hover {
+      text-decoration: underline;
+    }
+
+    /* Material form field customizations */
+    // ::ng-deep .mat-mdc-form-field-outline {
+    //   color: rgba(0, 0, 0, 0.12);
+    // }
+
+    // ::ng-deep .mat-mdc-form-field-focus-overlay {
+    //   background-color: transparent;
+    // }
+
+    // ::ng-deep .mat-mdc-text-field-wrapper {
+    //   background-color: white;
+    // }
+
+    // ::ng-deep .mat-mdc-form-field-label {
+    //   color: #666;
+    // }
+
+    // ::ng-deep .mat-mdc-input-element::placeholder {
+    //   color: #999;
+    //   opacity: 1;
+    // }
+
+    // ::ng-deep .mat-mdc-checkbox .mdc-checkbox__native-control:enabled:not(:checked):not(:indeterminate):not([data-indeterminate=true]) ~ .mdc-checkbox__background {
+    //   border-color: rgba(0, 0, 0, 0.54);
+    // }
+
+    // ::ng-deep .mat-mdc-checkbox .mdc-form-field {
+    //   color: #333;
+    // }
+
+      // @media (max-width: 480px) {
+      //   .login-container {
+      //     padding: 15px;
+      //   }
+        
+      //   .signin-card mat-card-content {
+      //     padding: 24px;
+      //   }
+        
+      //   .heart-icon {
+      //     font-size: 40px;
+      //     width: 40px;
+      //     height: 40px;
+      //   }
+        
+      //   .app-title {
+      //     font-size: 22px;
+      //   }
+      // }

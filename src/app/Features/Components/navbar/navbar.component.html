@@ -1,0 +1,60 @@
+<mat-toolbar class="header-toolbar">
+      <!-- Left Section - Logo/Brand -->
+      <div class="header-left">
+
+        <span class="material-symbols-outlined material-icon">
+      cardiology 
+       </span>
+
+        <span class="brand-text">SteadywellOS</span>
+      </div>
+
+    
+
+      <!-- Right Section - User Info -->
+      <div class="header-right">
+    
+        <div class="user_profile">
+
+          
+        <div class="user_avatar">
+          
+        </div>
+
+        
+      <div class="profile-info">
+        <span class="name">John Doe</span>
+        <span class="role">Admin</span>
+      </div>
+
+      <div class="dropdown_menu">
+        <mat-icon style="cursor: pointer;" [matMenuTriggerFor]="profileMenu" >arrow_drop_down</mat-icon>
+
+      </div>
+
+
+        </div>
+
+
+
+    
+
+    <mat-menu #profileMenu="matMenu" class="profile-menu">
+      <button mat-menu-item>
+        <mat-icon>account_circle</mat-icon>
+        <span>Profile</span>
+      </button>
+      <button mat-menu-item>
+        <mat-icon>settings</mat-icon>
+        <span>Settings</span>
+      </button>
+      <button (click)="onLogout()" mat-menu-item>
+        <mat-icon>logout</mat-icon>
+        <span>Logout</span>
+      </button>
+    </mat-menu>
+      
+      </div>
+
+
+    </mat-toolbar>

@@ -1,0 +1,231 @@
+<app-navbar></app-navbar>
+
+<app-loader [isLoading]="Loading"></app-loader>
+
+<div class="schedule-call-container">
+  <!-- Compact Header Section -->
+  <div class="header-section">
+    <div class="header-content">
+      <div class="title-group">
+        <div class="icon-wrapper">
+          <mat-icon>event</mat-icon>
+        </div>
+        <div class="title-text">
+          <h1>Schedule Call</h1>
+          <p class="subtitle">New patient call</p>
+        </div>
+      </div>
+      <button mat-stroked-button class="back-button" (click)="onBackToCalls()">
+        <mat-icon>arrow_back</mat-icon>
+        Back
+      </button>
+    </div>
+  </div>
+
+  <!-- Main Content -->
+  <div class="main-content">
+    <!-- Form Card -->
+    <div class="content-card">
+      <form [formGroup]="scheduleForm" (ngSubmit)="onScheduleCall()">
+        <!-- Compact Card Header -->
+        <div class="card-header">
+          <div class="header-icon">
+            <mat-icon>schedule</mat-icon>
+          </div>
+          <div class="header-text">
+            <h2>Call Details</h2>
+          </div>
+        </div>
+
+        <!-- Compact Form Fields -->
+        <div class="form-section">
+          <div class="form-row">
+            <div class="form-field">
+              <label>Patient</label>
+              <mat-form-field appearance="outline" floatLabel="always">
+                <mat-select formControlName="patient" required>
+                  <mat-option value="">
+                    <span *ngIf="Loading">Loading patients...</span>
+                    <span *ngIf="!Loading">Select patient</span>
+                  </mat-option>
+                  <mat-option
+                    *ngFor="let patient of patients"
+                    [value]="patient.id"
+                  >
+                    {{ patient.full_name }}
+                  </mat-option>
+                </mat-select>
+                <mat-error
+                  *ngIf="
+                    scheduleForm.get('patient')?.hasError('required') &&
+                    scheduleForm.get('patient')?.touched
+                  "
+                >
+                  Please select a patient
+                </mat-error>
+              </mat-form-field>
+            </div>
+
+            <div class="form-field">
+              <label>Call Type</label>
+              <mat-form-field appearance="outline" floatLabel="always">
+                <mat-select formControlName="callType" required>
+                  <mat-option value="">Select type</mat-option>
+                  <mat-option *ngFor="let callType of callTypes" [value]="callType.id">
+                    {{ callType.name }}
+                  </mat-option>
+                </mat-select>
+                <mat-error
+                  *ngIf="
+                    scheduleForm.get('callType')?.hasError('required') &&
+                    scheduleForm.get('callType')?.touched
+                  "
+                >
+                  Please select a call type
+                </mat-error>
+              </mat-form-field>
+            </div>
+          </div>
+
+          <div class="form-row">
+            <div class="form-field">
+              <label>Date & Time</label>
+              <mat-form-field appearance="outline" floatLabel="always">
+                <input
+                  matInput
+                  type="datetime-local"
+                  formControlName="scheduledDateTime"
+                  required
+                />
+                <mat-error
+                  *ngIf="
+                    scheduleForm
+                      .get('scheduledDateTime')
+                      ?.hasError('required') &&
+                    scheduleForm.get('scheduledDateTime')?.touched
+                  "
+                >
+                  Please select date and time
+                </mat-error>
+              </mat-form-field>
+            </div>
+
+            <div class="form-field">
+              <label>Conducted By</label>
+            <mat-form-field appearance="outline" floatLabel="always">
+  <mat-select formControlName="conductedBy" required>
+     <mat-option value="">
+                    <span *ngIf="Loading">Loading Nurses...</span>
+                    <span *ngIf="!Loading">Select Nurses</span>
+                  </mat-option>
+    <mat-option *ngFor="let user of conductedByUsers" [value]="user.id">
+      {{ user.full_name }}
+    </mat-option>
+  </mat-select>
+  <mat-error
+    *ngIf="scheduleForm.get('conductedBy')?.hasError('required') && scheduleForm.get('conductedBy')?.touched">
+    Please select who will conduct the call
+  </mat-error>
+</mat-form-field>
+
+            </div>
+          </div>
+
+          <div class="form-field notes-field">
+            <label>Notes</label>
+            <mat-form-field appearance="outline" floatLabel="always">
+              <textarea matInput formControlName="notes" rows="3"></textarea>
+            </mat-form-field>
+          </div>
+        </div>
+
+        <!-- Compact Action Buttons -->
+        <div class="action-buttons">
+          <button mat-stroked-button type="button" class="secondary-button" (click)="onCancelBtn()">
+            Cancel
+          </button>
+          <button
+            mat-raised-button
+            color="primary"
+            type="submit"
+            class="primary-button"
+            [disabled]="!scheduleForm.valid || isScheduling"
+          >
+            <mat-icon *ngIf="isScheduling">hourglass_empty</mat-icon>
+            <span *ngIf="!isScheduling">Schedule</span>
+            <span *ngIf="isScheduling">Scheduling...</span>
+          </button>
+        </div>
+      </form>
+    </div>
+
+    <!-- Patient Information Card -->
+    <div class="patient-info-card" *ngIf="selectedPatient">
+      <div class="card-header">
+        <div class="header-icon">
+          <mat-icon>person</mat-icon>
+        </div>
+        <div class="header-text">
+          <h2>Patient Information</h2>
+        </div>
+      </div>
+
+      <div class="patient-details">
+        <div class="detail-row">
+          <span class="label">Name:</span>
+          <span class="value">{{ selectedPatient.full_name }}</span>
+        </div>
+
+        <div class="detail-row" *ngIf="selectedPatient?.mrn">
+          <span class="label">MRN:</span>
+          <span class="value">{{ selectedPatient.mrn }}</span>
+        </div>
+
+        <div class="detail-row" *ngIf="selectedPatient?.phone_number">
+          <span class="label">Phone:</span>
+          <span class="value">{{ selectedPatient.phone_number }}</span>
+        </div>
+
+        <div
+          class="detail-row"
+          *ngIf="
+            selectedPatient?.age !== null && selectedPatient?.age !== undefined
+          "
+        >
+          <span class="label">Age:</span>
+          <span class="value">{{ selectedPatient.age }}</span>
+        </div>
+
+        <div class="detail-row" *ngIf="selectedPatient?.primary_diagnosis">
+          <span class="label">Primary Diagnosis:</span>
+          <span class="value">{{ selectedPatient.primary_diagnosis }}</span>
+        </div>
+
+        <div class="detail-row" *ngIf="selectedPatient?.primary_nurse">
+          <span class="label">Primary Nurse:</span>
+          <span class="value">{{
+            selectedPatient.primary_nurse.full_name
+          }}</span>
+        </div>
+
+        <div class="detail-row" *ngIf="selectedPatient?.protocol_type">
+          <span class="label">Protocol Type:</span>
+          <span class="value">{{ selectedPatient.protocol_type }}</span>
+        </div>
+
+        <div
+          class="detail-row"
+          *ngIf="
+            selectedPatient?.is_active !== null &&
+            selectedPatient?.is_active !== undefined
+          "
+        >
+          <span class="label">Active:</span>
+          <span class="value">{{
+            selectedPatient.is_active ? "Yes" : "No"
+          }}</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,32 @@
+<div class="dialog-container">
+  <!-- Close Button -->
+  <button mat-icon-button class="close-btn" mat-dialog-close>
+    <mat-icon>close</mat-icon>
+  </button>
+
+  <!-- Blue Header Section with Icon -->
+  <div class="dialog-header">
+    <div class="icon-circle">
+      <mat-icon class="dialog-icon">{{data.icon}}</mat-icon>
+    </div>
+  </div>
+
+  <!-- White Content Section -->
+  <div class="dialog-content">
+    <h2 class="dialog-title">{{data.title}}</h2>
+    <p class="dialog-message">{{data.message}}</p>
+    
+    <!-- Action Buttons -->
+    <div class="dialog-actions">
+      <div class="okay_btn">
+        <button (click)="onOk()" mat-raised-button class="okay-btn">Okay</button>
+
+      </div>
+
+      <div class="cancel_button">
+        <button (click)="onCancel()" mat-raised-button  class="cancel-btn">Cancel</button>
+      </div>
+      
+    </div>
+  </div>
+</div>
