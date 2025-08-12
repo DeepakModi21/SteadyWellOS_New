@@ -16,13 +16,13 @@ import { ChangePasswordComponent } from '../../../Shared/Dialogs/changePassword/
 
 @Component({
   selector: 'app-navbar',
-  imports: [MaterialModule, RouterModule, LoaderComponent, CommonModule],
+  imports: [MaterialModule, RouterModule, CommonModule],
   standalone: true,
   templateUrl: './navbar.component.html',
   styleUrl: './navbar.component.scss',
 })
 export class NavbarComponent {
-  loading: boolean = false;
+  // loading: boolean = false;
   
   constructor(
     private router: Router,
@@ -42,6 +42,15 @@ export class NavbarComponent {
     }
   }
 
+
+    isToggleOn = true;
+
+  onToggleChange(event: any) {
+    this.isToggleOn = event.checked;
+    console.log('Toggle state:', this.isToggleOn);
+  }
+
+
   onLogout() {
     this.dialog
       .open(DynamicDialogComponent, {
@@ -60,7 +69,6 @@ export class NavbarComponent {
       .afterClosed()
       .subscribe((result) => {
         if (result) {
-          this.loading = true;
 
           let payload: any = {
             access_token: this.cookieser.get('access_token'),
@@ -73,12 +81,10 @@ export class NavbarComponent {
               this.cookieser.delete('user');
               this.router.navigate(['/login']);
 
-              this.loading = false;
             },
             error: (err) => {
               this.toastr.error(err.error.error, 'Error');
 
-              this.loading = false;
             },
           });
         }

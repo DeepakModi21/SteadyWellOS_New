@@ -1,5 +1,10 @@
 <app-navbar></app-navbar>
 
+<app-loader [isLoading]="Loading"></app-loader>
+
+<div class="sidebar_body">
+
+    
 <mat-sidenav-container class="sidenav-container" autosize>
   <mat-sidenav 
     #sidenav 
@@ -39,27 +44,17 @@
 
   <!-- Main Content Area -->
   <mat-sidenav-content class="main-content">
-    
-    <!-- Top Toolbar (Optional) -->
-    <mat-toolbar class="toolbar" *ngIf="!sidenavOpened">
-      <button 
-        mat-icon-button 
-        (click)="toggleSidenav()"
-        class="menu-button">
-        <mat-icon>menu</mat-icon>
-      </button>
-      <span>Your App Title</span>
-    </mat-toolbar>
 
-    <!-- Main Content -->
-    <div class="content-wrapper">
-      <h1>Main Content Area</h1>
-      <p>This is where your main application content will be displayed.</p>
-      <p>The sidenav is currently {{ sidenavOpened ? 'open' : 'closed' }}.</p>
-      
-      <!-- Add your router-outlet here -->
-      <!-- <router-outlet></router-outlet> -->
+    <div class="sidenav_content">
+
+         <router-outlet></router-outlet>
+
     </div>
+
+   
     
   </mat-sidenav-content>
 </mat-sidenav-container>
+
+</div>
+

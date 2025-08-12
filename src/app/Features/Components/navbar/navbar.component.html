@@ -1,130 +1,60 @@
-<app-loader [isLoading]="loading"></app-loader>
+<mat-toolbar class="header-toolbar">
+      <!-- Left Section - Logo/Brand -->
+      <div class="header-left">
 
-<nav class="w-full bg-gradient-to-r from-indigo-700 to-indigo-600 shadow-lg navbar">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="flex items-center justify-between h-16">
-        <!-- Left: Logo + Links -->
-        <div class="flex items-center space-x-8">
-          <!-- Logo -->
-          <a href="#" class="flex items-center text-white font-bold text-lg select-none hover:opacity-90 transition-opacity">
-            <span class="material-symbols-outlined text-2xl mr-2 text-indigo-200">
-              cardiology
-            </span>
-            <span class="bg-gradient-to-r from-white to-indigo-100 bg-clip-text text-transparent">
-              SteadywellOS
-            </span>
-          </a>
- 
-          <!-- Navigation Links -->
-    <div class="hidden md:flex space-x-1">
-  <a routerLink="/dashboard"
-     routerLinkActive="active-link"
- 
-     class="px-3 py-2 rounded-md text-sm font-medium flex items-center text-white">
-     Dashboard
-  </a>
+        <span class="material-symbols-outlined material-icon">
+      cardiology 
+       </span>
 
-  <ng-container *ngIf="LoggedInUser && LoggedInUser.role.toLowerCase()=='userrole.admin'">
-     
-  <a routerLink="/admin_users"  
-     routerLinkActive="active-link"
-     class="px-3 py-2 rounded-md text-sm font-medium flex items-center text-white">
-     Users
-  </a>
+        <span class="brand-text">SteadywellOS</span>
+      </div>
 
-  </ng-container>
+    
 
-  <ng-container *ngIf="LoggedInUser && LoggedInUser.role.toLowerCase()=='userrole.nurse'">
+      <!-- Right Section - User Info -->
+      <div class="header-right">
+    
+        <div class="user_profile">
 
-    <a routerLink="/patients"  
-     routerLinkActive="active-link"
-     class="px-3 py-2 rounded-md text-sm font-medium flex items-center text-white">
-     Patients
-  </a>
-  </ng-container>
-
- 
-  <a routerLink="/calls"
-     routerLinkActive="active-link"
-     class="px-3 py-2 rounded-md text-sm font-medium flex items-center text-white">
-     Calls
-  </a>
- 
-  <a routerLink="/assessments"
-     routerLinkActive="active-link"
-     class="px-3 py-2 rounded-md text-sm font-medium flex items-center text-white ">
-     Assessments
-  </a>
- 
-  <a routerLink="/protocols"
-     routerLinkActive="active-link"
-     class="px-3 py-2 rounded-md text-sm font-medium flex items-center text-white">
-     Protocols
-  </a>
-</div>
- 
+          
+        <div class="user_avatar">
+          
         </div>
- 
 
-<div class="relative">   
- 
-  <button id="userButton" 
-          [matMenuTriggerFor]="userMenu"
-          aria-haspopup="true" 
-          aria-expanded="false" 
-          aria-controls="userDropdown"     
-          class="flex items-center space-x-1 text-indigo-100 hover:text-white font-medium focus:outline-none transition-colors duration-200 group">         
-    
- 
-    <div class="w-8 h-8 rounded-full bg-indigo-500 flex items-center justify-center text-white font-semibold border border-indigo-300 shadow-sm">       
-      {{ getInitials(LoggedInUser?.username || LoggedInUser?.first_name || LoggedInUser?.email || '') }}     
-    </div>         
-    
-    
-    <span class="hidden md:inline">{{ LoggedInUser?.username || LoggedInUser?.first_name || LoggedInUser?.email || 'User' }}</span>         
-    
-   
-    <svg class="w-4 h-4 text-indigo-200 group-hover:text-white transition-transform duration-200"          
-         fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"          
-         stroke-linejoin="round" viewBox="0 0 24 24">       
-      <path d="M19 9l-7 7-7-7"></path>     
-    </svg>   
-  </button>      
+        
+      <div class="profile-info">
+        <span class="name">John Doe</span>
+        <span class="role">Admin</span>
+      </div>
 
-  <mat-menu #userMenu="matMenu" class="user-menu">
-    
- 
-    <div class="px-4 py-3 bg-gray-50 border-b border-gray-100" mat-menu-item disabled>
-      <p class="text-sm font-medium text-gray-900">Signed in as</p>
-      <p class="text-sm text-gray-500 truncate">{{ LoggedInUser?.email || LoggedInUser?.username }}</p>
-    </div>
-           
-    <button mat-menu-item (click)="ViewProfile()">
-      <mat-icon>person</mat-icon>
-      <span>Profile</span>
-    </button>
-    
-    <button mat-menu-item>
-      <mat-icon>settings</mat-icon>
-      <span>Settings</span>
-    </button>
-    
-    <mat-divider></mat-divider>
-<!-- 
-     <button mat-menu-item (click)="changePassword()">
-      <mat-icon>lock_reset</mat-icon>
-      <span>Change Password</span>
-    </button> -->
-           
-    <button mat-menu-item (click)="onLogout()">
-      <mat-icon>logout</mat-icon>
-      <span>Log Out</span>
-    </button>
+      <div class="dropdown_menu">
+        <mat-icon style="cursor: pointer;" [matMenuTriggerFor]="profileMenu" >arrow_drop_down</mat-icon>
+
+      </div>
 
 
-  
-         
-  </mat-menu> 
+        </div>
 
 
-</div>
+
+    
+
+    <mat-menu #profileMenu="matMenu" class="profile-menu">
+      <button mat-menu-item>
+        <mat-icon>account_circle</mat-icon>
+        <span>Profile</span>
+      </button>
+      <button mat-menu-item>
+        <mat-icon>settings</mat-icon>
+        <span>Settings</span>
+      </button>
+      <button (click)="onLogout()" mat-menu-item>
+        <mat-icon>logout</mat-icon>
+        <span>Logout</span>
+      </button>
+    </mat-menu>
+      
+      </div>
+
+
+    </mat-toolbar>

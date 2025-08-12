@@ -223,6 +223,12 @@ letter-spacing: 0%;
       border-radius: 4px;
     }
 
+    .action_button ::ng-deep .mat-mdc-raised-button:not(:disabled)
+    {
+           background-color: #40728c;
+           color: white;
+    }
+
     .signin-button:hover {
       background-color: #245066;
     }

@@ -6,16 +6,20 @@ import { AuthService } from '../../services/AuthSer/auth.service';
 import { ToastrService } from 'ngx-toastr';
 import { CookieService } from 'ngx-cookie-service';
 import { MatInputModule } from '@angular/material/input';
+import { LoaderService } from '../../../Shared/services/loader.service';
+import { LoaderComponent } from '../../../Shared/loader/loader/loader.component';
+
 
 
 @Component({
   selector: 'app-login',
-  imports: [MaterialModule,ReactiveFormsModule,MatInputModule,RouterModule],
+  imports: [MaterialModule,ReactiveFormsModule,MatInputModule,RouterModule,LoaderComponent],
   templateUrl: './login.component.html',
   styleUrl: './login.component.scss'
 })
 export class LoginComponent {
 
+  Loading:boolean=false;
 
 
   loginForm: FormGroup;
@@ -26,7 +30,7 @@ isInProgress: WritableSignal<boolean> = signal(false);
   RememberMe: boolean = false;
   localStorage: any;
 
-  constructor(private fb: FormBuilder,private router: Router,private auth_ser:AuthService,private cookieService: CookieService,private toastr: ToastrService) {
+  constructor(private fb: FormBuilder,private router: Router,private auth_ser:AuthService,private cookieService: CookieService,private toastr: ToastrService,private loaderser:LoaderService) {
     this.loginForm = this.fb.group({
       username: ['', [Validators.required,
         //  Validators.email
@@ -87,6 +91,7 @@ isInProgress: WritableSignal<boolean> = signal(false);
  
 
   onSubmit(): void {
+    
     if (this.loginForm.invalid) {
       this.loginForm.markAllAsTouched();
       return;
@@ -104,6 +109,8 @@ isInProgress: WritableSignal<boolean> = signal(false);
     this.auth_ser.login(payload).subscribe({
   next: (response) => {
     this.toggleLoader(); 
+
+    this.loading=false;
 
       if(this.loginForm.get('RememberMe')?.value)
     {
@@ -160,7 +167,7 @@ isInProgress: WritableSignal<boolean> = signal(false);
     
     switch (userRole) {
       case 'ADMIN':
-        this.router.navigate(['/portal']);
+        this.router.navigate(['/portal/dashboard']);
         break;
       case 'NURSE':
         this.router.navigate(['/dashboard']);

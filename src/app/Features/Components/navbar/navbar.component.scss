@@ -1,74 +1,202 @@
-.nav-container
-{
-  background-color: rgb(79 70 229 / var(--tw-bg-opacity, 1));
-}
-
-.navbar
-{
-      position: sticky;
-    top: 0px;
-    z-index: 500;
-}
-
- .menu-container {
-      display: flex;
-      justify-content: flex-end;
-      padding: 16px;
-    }
-
-    .menu-trigger-btn {
-      background-color: #1976d2;
+.header-toolbar {
+      // background: linear-gradient(135deg, #2c5aa0 0%, #4a7bc8 100%);
+      background: #284B5F !important;
       color: white;
+      height: 64px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 24px;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+      z-index: 700;
+      position: sticky;
+      top: 0px;
+      // margin-bottom: 26px;
     }
 
-    .menu-trigger-btn:hover {
-      background-color: #1565c0;
-    }
-
-    .user-menu {
-      margin-top: 8px;
-    }
-
-    .user-menu button {
+    .header-left {
       display: flex;
       align-items: center;
       gap: 12px;
-      min-width: 120px;
+      font-size: 18px;
     }
 
-    .user-menu mat-icon {
-      margin-right: 0;
-      font-size: 20px;
-      width: 20px;
-      height: 20px;
+    .brand-icon {
+      font-size: 24px;
+      color: #ff4081;
     }
 
-    ::ng-deep .mat-mdc-menu-panel {
-      background-color: white;
-      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-      border-radius: 4px;
-      margin-top: 8px;
+    .header-left .material-icon
+    {
+      font-size: 35px;
     }
 
-    ::ng-deep .user-menu .mat-mdc-menu-item {
-      color: black;
+    .brand-text {
+      font-size: 21px;
+      font-weight: 600;
+      letter-spacing: 0.5px;
+    }
+
+    .header-center {
+      flex: 1;
+      display: flex;
+      justify-content: center;
+    }
+
+    .toggle-group {
       display: flex;
       align-items: center;
-      min-width: 120px;
+      gap: 16px;
+      background: rgba(255, 255, 255, 0.1);
+      padding: 8px 20px;
+      border-radius: 24px;
+      backdrop-filter: blur(10px);
     }
 
-    ::ng-deep .user-menu .mat-mdc-menu-item:hover {
-      background-color: #f5f5f5;
+    .toggle-label {
+      font-size: 14px;
+      font-weight: 500;
+      opacity: 0.7;
+      transition: opacity 0.3s ease;
     }
 
-    ::ng-deep .user-menu mat-icon {
-      margin-right: 0;
-      font-size: 20px;
-      width: 20px;
-      height: 20px;
-      color: black;
+    .toggle-label.active {
+      opacity: 1;
+      color: #4fc3f7;
     }
-    ::ng-deep .active-link {
-  background-color: #3730a3 !important; /* indigo-800 */
-  color: white !important;
-}
+
+    .header-right {
+      display: flex;
+      align-items: center;
+    }
+
+    .user-info {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      cursor: pointer;
+      padding: 8px 16px;
+      border-radius: 24px;
+      transition: background-color 0.3s ease;
+    }
+
+    .user-info:hover {
+      background: rgba(255, 255, 255, 0.1);
+    }
+
+    .user-avatar mat-icon {
+      font-size: 32px;
+      width: 32px;
+      height: 32px;
+      color: #4fc3f7;
+    }
+
+    .user-details {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+    }
+
+    .user-name {
+      font-size: 14px;
+      font-weight: 600;
+      line-height: 1.2;
+    }
+
+    .user-status {
+      font-size: 12px;
+      opacity: 0.8;
+      color: #4fc3f7;
+    }
+
+    /* Angular Material Slide Toggle Customization */
+    ::ng-deep .mat-slide-toggle.mat-checked .mat-slide-toggle-thumb {
+      background-color: #4fc3f7;
+    }
+
+    ::ng-deep .mat-slide-toggle.mat-checked .mat-slide-toggle-bar {
+      background-color: rgba(79, 195, 247, 0.5);
+    }
+
+    ::ng-deep .mat-slide-toggle .mat-slide-toggle-bar {
+      background-color: rgba(255, 255, 255, 0.3);
+    }
+
+    ::ng-deep .mat-slide-toggle .mat-slide-toggle-thumb {
+      background-color: white;
+    }
+
+    /* Responsive Design */
+    @media (max-width: 768px) {
+      .header-toolbar {
+        padding: 0 16px;
+      }
+      
+      .header-center {
+        display: none;
+      }
+      
+      .brand-text {
+        display: none;
+      }
+      
+      .user-details {
+        display: none;
+      }
+    }
+
+
+    .profile-button {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      padding: 0 16px;
+      color: inherit;
+    }
+
+    .profile-info {
+      display: flex;
+      flex-direction: column;
+      text-align: right;
+      align-items: flex-start;
+      justify-content: flex-end;
+      margin-right: 23px;
+    }
+
+    .name {
+      font-weight: 500;
+      font-size: 14px;
+      line-height: 15px;
+    }
+
+    .role {
+      font-size: 12px;
+      opacity: 0.7;
+    }
+
+    .profile-menu {
+      background-color: white;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+    }
+
+    .profile-menu button {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .user_avatar
+    {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      background: white;
+      // margin-right: 6px;
+    }
+
+    .user_profile
+    {
+      display: flex;
+      gap: 8px;
+      align-items: flex-end;
+    }

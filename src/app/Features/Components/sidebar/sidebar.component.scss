@@ -1,6 +1,16 @@
+*
+{
+    box-sizing: border-box;
+}
+
 .sidenav-container {
   height: 100vh;
   width: 100%;
+}
+
+.sidenav_content
+{
+    padding: 23px;
 }
 
 .sidenav {
@@ -47,10 +57,10 @@
   }
 
   .nav-list {
-    padding: 8px 0;
+    padding: 8px 10px;
     
     .nav-item {
-      margin: 2px 16px;
+      // margin: 2px 16px;
       border-radius: 8px;
       cursor: pointer;
       transition: all 0.2s ease-in-out;
@@ -61,7 +71,7 @@
       }
       
       &.active-item {
-        background-color: #2c3e50 !important;
+        background-color: #284B5F !important;
         color: white;
         
         .nav-icon {

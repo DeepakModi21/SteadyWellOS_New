@@ -3,6 +3,9 @@ import { MaterialModule } from '../../../Shared/Material Module/material.module'
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
+import { LoaderService } from '../../../Shared/services/loader.service';
+
+
 
 
 
@@ -15,8 +18,9 @@ import { RouterModule } from '@angular/router';
 export class ResetPasswordComponent {
 
     resetForm!: FormGroup;
+    EmailSent:boolean=false;
 
-     constructor(private fb: FormBuilder) {
+     constructor(private fb: FormBuilder,private loaderser:LoaderService) {
     this.resetForm = this.fb.group({
       email: ['', [Validators.required, Validators.email]]
     });
@@ -28,6 +32,18 @@ export class ResetPasswordComponent {
       console.log('Sending reset link to:', email);
       // Add your password reset logic here
       alert('Password reset link sent to ' + email);
+
+      this.loaderser.show();
+
+      setTimeout(() => {
+
+        this.EmailSent=true;
+
+        this.loaderser.hide();
+        
+      }, 1000);
+
+      
     }
   }
 

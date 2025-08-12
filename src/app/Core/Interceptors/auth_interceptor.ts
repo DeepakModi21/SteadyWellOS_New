@@ -6,11 +6,13 @@ import {
   HttpEvent,
   HttpErrorResponse
 } from '@angular/common/http';
-import { Observable, throwError, switchMap } from 'rxjs';
-import { catchError } from 'rxjs/operators';
+import { Observable, throwError } from 'rxjs';
+import { catchError, finalize } from 'rxjs/operators';
 import { CookieService } from 'ngx-cookie-service';
 import { AuthService } from '../../Features/services/AuthSer/auth.service';
 import { AuthResponse } from '../interfaces/auth_interface';
+import { LoaderService } from '../../Shared/services/loader.service';
+// import { LoaderService } from '../services/loader.service'; // Make sure the path is correct
 
 
 export const authInterceptor: HttpInterceptorFn = (
@@ -19,6 +21,7 @@ export const authInterceptor: HttpInterceptorFn = (
 ): Observable<HttpEvent<any>> => {
   const cookieService = inject(CookieService);
   const authService = inject(AuthService);
+  const loaderService = inject(LoaderService); // Inject the loader service
 
   // Check if 'skip-auth' header is set to true
   const shouldSkipAuth = req.headers.get('skip-auth') === 'true';
@@ -40,27 +43,18 @@ export const authInterceptor: HttpInterceptorFn = (
     });
   }
 
+  // 👉 Show loader before request is sent
+  loaderService.show();
+
   // Handle request and refresh token on 401
   return next(modifiedReq).pipe(
     catchError((error: HttpErrorResponse) => {
-//       if (error.status === 401) {
-//       return authService.refreshAccessToken().pipe(
-//   switchMap((res: AuthResponse) => {
-//     const newToken = res.access_token; // or res.token depending on your API
-     
-//     cookieService.set('access_token', res.access_token, res.expires_in / 3600, '/', '', true, 'Strict');
-//   cookieService.set('refresh_token', res.refresh_token, 7, '/', '', true, 'Strict'); // 7 days
-
-
-//     const retryReq = req.clone({
-//       setHeaders: { Authorization: `Bearer ${newToken}` }
-//     });
-
-//     return next(retryReq);
-//   })
-// );
-//       }
+      // Handle 401 token refresh logic if needed
       return throwError(() => error);
+    }),
+    finalize(() => {
+      // 👉 Hide loader when request completes or errors
+      loaderService.hide();
     })
   );
 };

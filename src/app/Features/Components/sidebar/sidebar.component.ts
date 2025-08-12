@@ -1,57 +1,78 @@
-import { Component, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { MaterialModule } from '../../../Shared/Material Module/material.module';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { NavbarComponent } from '../navbar/navbar.component';
 import { MatSidenav } from '@angular/material/sidenav';
+import { LoaderComponent } from '../../../Shared/loader/loader/loader.component';
+import { LoaderService } from '../../../Shared/services/loader.service';
+
+
 
 
 @Component({
   selector: 'app-sidebar',
-  imports: [MaterialModule,CommonModule,RouterModule,NavbarComponent],
+  imports: [MaterialModule,CommonModule,RouterModule,NavbarComponent,LoaderComponent],
   templateUrl: './sidebar.component.html',
   styleUrl: './sidebar.component.scss'
 })
-export class SidebarComponent {
+export class SidebarComponent implements OnInit {
 
   @ViewChild('sidenav') sidenav!: MatSidenav;
   
   sidenavOpened = true;
+
+  Loading:boolean=false;
 
 
   navigationItems: any[] = [
     {
       label: 'Dashboard',
       icon: 'dashboard',
-      route: '/dashboard'
+      route: '/dashboard',
+      active:true
     },
     {
       label: 'Patients',
       icon: 'people',
-      route: '/patients'
+      route: '/patients',
+      active:false
     },
     {
       label: 'Calls',
       icon: 'phone',
-      route: '/calls'
+      route: '/calls',
+      active:false
     },
     {
       label: 'Protocols',
       icon: 'description',
-      route: '/protocols'
+      route: '/protocols',
+      active:false
     },
     {
       label: 'Assessments',
       icon: 'assignment',
       route: '/assessments',
-      active: true
+      active: false
     },
     {
       label: 'Staff',
       icon: 'favorite',
-      route: '/staff'
+      route: '/staff',
+      active:false
     }
   ];
+
+  ngOnInit()
+  {
+    this.loaderser.isLoading$.subscribe((res:boolean)=>
+    {
+      this.Loading=res;
+    })
+  }
+
+  constructor(private loaderser:LoaderService){}
 
   onNavigationClick(item: any): void {
     // Reset all active states

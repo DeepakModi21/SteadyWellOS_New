@@ -1,3 +1,5 @@
+<app-loader [isLoading]="loading"></app-loader>
+
 <div class="login-container">
       <div class="login-card">
         <!-- Header Section -->
@@ -57,10 +59,14 @@
                 <mat-checkbox formControlName="RememberMe">
                   Remember me
                 </mat-checkbox>
-                <a  class="forgot-password">Forgot Password?</a>
+                <a routerLink= "/reset_password" class="forgot-password">Forgot Password?</a>
               </div>
 
               <!-- Sign In Button -->
+
+              <div class="action_button">
+
+                
               <button 
               [disabled]="!loginForm.valid"
                 mat-raised-button 
@@ -69,6 +75,9 @@
                 type="submit">
                 Sign In
               </button>
+
+              </div>
+
             </form>
           </mat-card-content>
         </mat-card>
