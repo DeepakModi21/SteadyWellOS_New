@@ -1,0 +1,81 @@
+<div class="login-container">
+      <div class="login-card">
+        <!-- Header Section -->
+        <div class="header">
+          <div class="logo">
+
+              <span class="material-symbols-outlined material-icon">
+      cardiology 
+       </span>
+
+       <span class="logoHeader">SteadywellOS</span>
+            
+          </div>
+       
+          <p class="subtitle">Unleashing Abundance in Healthcare</p>
+        </div>
+
+        <!-- Sign In Form -->
+        <mat-card class="signin-card">
+          <mat-card-content>
+            <div class="signin-header">
+              <h2>Sign In</h2>
+              <p class="signin-subtitle">Enter your credentials.</p>
+            </div>
+
+            <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+              
+                <div class="formRow">
+
+                      <mat-label class="mat_label">Username</mat-label>
+
+                
+                <mat-form-field appearance="outline" class="full-width">
+    <input formControlName="username" matInput placeholder="steadywell">
+  </mat-form-field>
+
+
+                </div>
+              
+
+   <div class="formRow"> 
+
+                      <mat-label class="mat_label">Password</mat-label>
+
+                
+                <mat-form-field  appearance="outline" class="full-width">
+    <input matInput formControlName="password" type="password"  placeholder="•••••••••••••••">
+ 
+  </mat-form-field>
+
+
+                </div>
+              
+
+              <!-- Remember Me and Forgot Password -->
+              <div class="form-options">
+                <mat-checkbox formControlName="RememberMe">
+                  Remember me
+                </mat-checkbox>
+                <a  class="forgot-password">Forgot Password?</a>
+              </div>
+
+              <!-- Sign In Button -->
+              <button 
+              [disabled]="!loginForm.valid"
+                mat-raised-button 
+                color="primary" 
+                class="signin-button"
+                type="submit">
+                Sign In
+              </button>
+            </form>
+          </mat-card-content>
+        </mat-card>
+
+        <!-- Support Contact -->
+        <div class="support-text">
+          For help, contact support at <a href="mailto:support@steadywell.com">{{'support@steadywell.com'}}</a>
+        </div>
+      </div>
+    </div>

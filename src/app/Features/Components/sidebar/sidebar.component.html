@@ -1,0 +1,65 @@
+<app-navbar></app-navbar>
+
+<mat-sidenav-container class="sidenav-container" autosize>
+  <mat-sidenav 
+    #sidenav 
+    class="sidenav" 
+    mode="side" 
+    [opened]="sidenavOpened"
+    fixedInViewport="true">
+    
+    <!-- Sidenav Header -->
+    <div class="sidenav-header">
+      <div class="header-content">
+        <span class="header-title">Quick Navigation</span>
+        <button 
+          mat-icon-button 
+          class="collapse-btn"
+          (click)="toggleSidenav()">
+          <mat-icon>chevron_left</mat-icon>
+        </button>
+      </div>
+    </div>
+
+    <!-- Navigation List -->
+    <mat-nav-list class="nav-list">
+      <mat-list-item 
+        *ngFor="let item of navigationItems"
+        [class.active-item]="item.active"
+        class="nav-item"
+        (click)="onNavigationClick(item)">
+        
+        <mat-icon matListItemIcon class="nav-icon">{{ item.icon }}</mat-icon>
+        <span matListItemTitle class="nav-text">{{ item.label }}</span>
+        
+      </mat-list-item>
+    </mat-nav-list>
+    
+  </mat-sidenav>
+
+  <!-- Main Content Area -->
+  <mat-sidenav-content class="main-content">
+    
+    <!-- Top Toolbar (Optional) -->
+    <mat-toolbar class="toolbar" *ngIf="!sidenavOpened">
+      <button 
+        mat-icon-button 
+        (click)="toggleSidenav()"
+        class="menu-button">
+        <mat-icon>menu</mat-icon>
+      </button>
+      <span>Your App Title</span>
+    </mat-toolbar>
+
+    <!-- Main Content -->
+    <div class="content-wrapper">
+      <h1>Main Content Area</h1>
+      <p>This is where your main application content will be displayed.</p>
+      <p>The sidenav is currently {{ sidenavOpened ? 'open' : 'closed' }}.</p>
+      
+      <!-- Add your router-outlet here -->
+      <!-- <router-outlet></router-outlet> -->
+    </div>
+    
+  </mat-sidenav-content>
+</mat-sidenav-container>

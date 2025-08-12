@@ -1,0 +1,74 @@
+.nav-container
+{
+  background-color: rgb(79 70 229 / var(--tw-bg-opacity, 1));
+}
+
+.navbar
+{
+      position: sticky;
+    top: 0px;
+    z-index: 500;
+}
+
+ .menu-container {
+      display: flex;
+      justify-content: flex-end;
+      padding: 16px;
+    }
+
+    .menu-trigger-btn {
+      background-color: #1976d2;
+      color: white;
+    }
+
+    .menu-trigger-btn:hover {
+      background-color: #1565c0;
+    }
+
+    .user-menu {
+      margin-top: 8px;
+    }
+
+    .user-menu button {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      min-width: 120px;
+    }
+
+    .user-menu mat-icon {
+      margin-right: 0;
+      font-size: 20px;
+      width: 20px;
+      height: 20px;
+    }
+
+    ::ng-deep .mat-mdc-menu-panel {
+      background-color: white;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+      border-radius: 4px;
+      margin-top: 8px;
+    }
+
+    ::ng-deep .user-menu .mat-mdc-menu-item {
+      color: black;
+      display: flex;
+      align-items: center;
+      min-width: 120px;
+    }
+
+    ::ng-deep .user-menu .mat-mdc-menu-item:hover {
+      background-color: #f5f5f5;
+    }
+
+    ::ng-deep .user-menu mat-icon {
+      margin-right: 0;
+      font-size: 20px;
+      width: 20px;
+      height: 20px;
+      color: black;
+    }
+    ::ng-deep .active-link {
+  background-color: #3730a3 !important; /* indigo-800 */
+  color: white !important;
+}

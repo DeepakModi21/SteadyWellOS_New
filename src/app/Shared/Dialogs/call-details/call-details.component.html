@@ -1,0 +1,205 @@
+<div class="mat-elevation-z8 p-6 max-h-[80vh] overflow-y-auto bg-white rounded-lg">
+  <!-- Title with icon -->
+  <div class="flex items-center mb-6">
+    <mat-icon class="text-blue-500 mr-2">{{ isEditMode ? 'edit' : 'call' }}</mat-icon>
+    <h2 class="text-2xl font-semibold text-gray-800">
+      {{ isEditMode ? 'Edit Call Details' : 'Call Details' }}
+    </h2>
+  </div>
+
+  <form [formGroup]="editForm" (ngSubmit)="onSave()" *ngIf="isEditMode; else viewMode">
+ 
+    <!-- Main content card - Edit Mode -->
+    <mat-card class="mb-6">
+      <mat-card-header class="bg-blue-50 p-4 border-b">
+        <mat-card-title class="text-lg font-medium">Edit Information</mat-card-title>
+      </mat-card-header>
+      <mat-card-content class="p-4">
+        <div class="grid grid-cols-1 gap-6">
+          
+          <!-- Scheduled Time -->
+          <div class="flex flex-col">
+              <label>Scheduled Time</label>
+            <mat-form-field appearance="outline" class="w-full">
+            
+              <input 
+                matInput 
+                type="datetime-local" 
+                formControlName="scheduledTime"
+                [value]="getFormattedDateTime(editForm.get('scheduledTime')?.value)">
+              <mat-icon matSuffix>schedule</mat-icon>
+              <mat-error *ngIf="editForm.get('scheduledTime')?.hasError('required')">
+                Scheduled time is required
+              </mat-error>
+            </mat-form-field>
+          </div>
+
+          <!-- Status Dropdown -->
+     <div class="flex flex-col">
+  <label>Status</label>
+  <mat-form-field appearance="outline" class="w-full">
+    <mat-select formControlName="status" required>
+      <mat-option *ngFor="let status of statusOptions" [value]="status.value">
+        {{ status.label }}
+      </mat-option>
+    </mat-select>
+    <mat-icon matSuffix>info</mat-icon>
+    <mat-error *ngIf="editForm.get('status')?.hasError('required')">
+      Status is required
+    </mat-error>
+  </mat-form-field>
+</div>
+
+
+          <!-- Notes -->
+          <div class="flex flex-col">
+                 <label>Notes</label>
+            <mat-form-field appearance="outline" class="w-full">
+         
+              <textarea 
+                matInput 
+                rows="6" 
+                formControlName="notes"
+                placeholder="Enter call notes...">
+              </textarea>
+              <mat-icon matSuffix>note</mat-icon>
+            </mat-form-field>
+          </div>
+
+        </div>
+      </mat-card-content>
+    </mat-card>
+
+    <!-- Patient information card - Read only in edit mode -->
+    <!-- <mat-card class="mb-6">
+      <mat-card-header class="bg-gray-50 p-4 border-b">
+        <mat-card-title class="text-lg font-medium text-gray-600">Patient Information (Read-only)</mat-card-title>
+      </mat-card-header>
+      <mat-card-content class="p-4">
+        <div class="flex items-center mb-3">
+          <mat-icon class="text-blue-500 mr-2">badge</mat-icon>
+          <p class="text-lg font-medium">{{ callData?.patient?.full_name || 'N/A' }}</p>
+        </div>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <div class="flex items-center">
+            <mat-icon class="text-gray-400 mr-2">fingerprint</mat-icon>
+            <p><strong>MRN:</strong> {{ callData?.patient?.mrn || 'N/A' }}</p>
+          </div>
+          <div class="flex items-center">
+            <mat-icon class="text-gray-400 mr-2">call</mat-icon>
+            <p><strong>Phone:</strong> {{ callData?.patient?.phone || 'N/A' }}</p>
+          </div>
+        </div>
+      </mat-card-content>
+    </mat-card> -->
+
+    <!-- Action buttons for Edit Mode -->
+    <div class="flex justify-end gap-3">
+      <button type="button" mat-stroked-button color="warn" (click)="onCancel()">
+        <mat-icon>close</mat-icon>
+        Cancel
+      </button>
+      <button type="submit" mat-raised-button color="primary" [disabled]="editForm.invalid">
+        <mat-icon>save</mat-icon>
+        Save Changes
+      </button>
+    </div>
+  </form>
+
+  <!-- VIEW MODE TEMPLATE -->
+  <ng-template #viewMode>
+    <!-- Main content card - View Mode -->
+    <mat-card class="mb-6">
+      <mat-card-header class="bg-blue-50 p-4 border-b">
+        <mat-card-title class="text-lg font-medium">Call Information</mat-card-title>
+      </mat-card-header>
+      <mat-card-content class="p-4">
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <div class="flex items-center">
+            <mat-icon class="text-gray-400 mr-2">info</mat-icon>
+            <p><strong>Status:</strong> 
+              <span [class]="getStatusClass(callData?.status)">
+                {{ callData?.status || 'N/A' }}
+              </span>
+            </p>
+          </div>
+          <div class="flex items-center">
+            <mat-icon class="text-gray-400 mr-2">phone</mat-icon>
+            <p><strong>Type:</strong> {{ callData?.call_type || 'N/A' }}</p>
+          </div>
+          <div class="flex items-center">
+            <mat-icon class="text-gray-400 mr-2">schedule</mat-icon>
+            <p><strong>Scheduled Time:</strong> {{ callData?.scheduled_time ? (callData.scheduled_time | date:'medium') : 'N/A' }}</p>
+          </div>
+          <div class="flex items-center">
+            <mat-icon class="text-gray-400 mr-2">play_circle</mat-icon>
+            <p><strong>Start Time:</strong> {{ callData?.start_time ? (callData.start_time | date:'shortTime') : 'Not started' }}</p>
+          </div>
+          <div class="flex items-center">
+            <mat-icon class="text-gray-400 mr-2">stop_circle</mat-icon>
+            <p><strong>End Time:</strong> {{ callData?.end_time ? (callData.end_time | date:'shortTime') : 'Not ended' }}</p>
+          </div>
+          <div class="flex items-center">
+            <mat-icon class="text-gray-400 mr-2">timer</mat-icon>
+            <p><strong>Duration:</strong> {{ callData?.duration ? (callData.duration + ' min') : '-' }}</p>
+          </div>
+          <div class="flex items-center md:col-span-2">
+            <mat-icon class="text-gray-400 mr-2">person</mat-icon>
+            <p><strong>Conducted By:</strong> {{ callData?.conducted_by?.name || 'N/A' }}</p>
+          </div>
+        </div>
+      </mat-card-content>
+    </mat-card>
+
+    <!-- Patient information card - View Mode -->
+    <mat-card class="mb-6">
+      <mat-card-header class="bg-blue-50 p-4 border-b">
+        <mat-card-title class="text-lg font-medium">Patient Information</mat-card-title>
+      </mat-card-header>
+      <mat-card-content class="p-4">
+        <div class="flex items-center mb-3">
+          <mat-icon class="text-blue-500 mr-2">badge</mat-icon>
+          <p class="text-lg font-medium">{{ callData?.patient?.full_name || 'N/A' }}</p>
+        </div>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <div class="flex items-center">
+            <mat-icon class="text-gray-400 mr-2">fingerprint</mat-icon>
+            <p><strong>MRN:</strong> {{ callData?.patient?.mrn || 'N/A' }}</p>
+          </div>
+          <div class="flex items-center">
+            <mat-icon class="text-gray-400 mr-2">call</mat-icon>
+            <p><strong>Phone:</strong> {{ callData?.patient?.phone || 'N/A' }}</p>
+          </div>
+        </div>
+      </mat-card-content>
+    </mat-card>
+
+    <!-- Notes card - View Mode -->
+    <mat-card class="mb-6">
+      <mat-card-header class="bg-blue-50 p-4 border-b">
+        <mat-card-title class="text-lg font-medium">Notes</mat-card-title>
+      </mat-card-header>
+      <mat-card-content class="p-4">
+        <div *ngIf="callData?.notes; else noNotes" class="p-4 rounded whitespace-pre-line">
+          {{ callData.notes }}
+        </div>
+        <ng-template #noNotes>
+          <p class="text-gray-500 italic">No notes available for this call.</p>
+        </ng-template>
+      </mat-card-content>
+    </mat-card>
+
+    <!-- Action buttons for View Mode -->
+    <div class="flex justify-end gap-3">
+      
+      <button mat-stroked-button color="warn" (click)="onCancel()">
+        <mat-icon>close</mat-icon>
+        Cancel
+      </button>
+    <button mat-raised-button color="primary" *ngIf="!isEditMode" (click)="onEdit()">
+  <mat-icon>edit</mat-icon>
+  Edit
+</button>
+    </div>
+  </ng-template>
+</div>
