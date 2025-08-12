@@ -1,0 +1,46 @@
+.card {
+  width: 100%; /* ✅ responsive width */
+  height: 121px;
+  border-radius: 8px;
+  padding: 18px 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  box-sizing: border-box;
+  overflow: hidden;
+  align-items: flex-start; /* ✅ Left align all children */
+
+  /* Heading */
+  .heading {
+    font-family: 'Optima', sans-serif;
+    font-weight: 400;
+    font-style: normal;
+    font-size: 18px;
+    line-height: 100%;
+    letter-spacing: 0;
+    text-align: left;
+  }
+
+  /* Number */
+  .number {
+    font-size: 28px;
+    font-weight: 700;
+    color: #007AFF; /* default number color, can be overridden via [ngStyle] */
+    border-radius: 4px;
+    display: inline-block;
+    padding: 0; /* Removed extra padding */
+    width: fit-content;
+    text-align: left;
+  }
+
+  /* Status */
+  .status {
+    font-family: 'Optima', sans-serif;
+    font-weight: 400;
+    font-style: normal;
+    font-size: 18px;
+    line-height: 100%;
+    letter-spacing: 0;
+    text-align: left;
+  }
+}
