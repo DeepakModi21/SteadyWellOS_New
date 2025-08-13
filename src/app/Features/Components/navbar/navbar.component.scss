@@ -9,7 +9,7 @@
       padding: 0 24px;
       box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
       z-index: 700;
-      position: sticky;
+      position: fixed;
       top: 0px;
       // margin-bottom: 26px;
     }
@@ -174,10 +174,7 @@
       opacity: 0.7;
     }
 
-    .profile-menu {
-      background-color: white;
-      box-shadow: 0 2px 4px rgba(0,0,0,0.2);
-    }
+   
 
     .profile-menu button {
       display: flex;
@@ -199,4 +196,14 @@
       display: flex;
       gap: 8px;
       align-items: flex-end;
+    }
+
+
+    ::ng-deep  .profile-menu {
+      background-color: white !important;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+    }
+
+    ::ng-deep .profile-menu .mat-mdc-menu-content {
+       width: 160px !important;
     }

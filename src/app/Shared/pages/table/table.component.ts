@@ -1,25 +1,30 @@
-import { Component } from '@angular/core';
-import { MaterialModule } from '../../Material Module/material.module';
+import { Component, Input, Output, EventEmitter } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { MaterialModule } from '../../Material Module/material.module';
+
+export interface TableAction {
+  label: string;   // e.g. "Edit"
+  icon?: string;   // Optional material icon
+  action: string;  // e.g. "edit" (identifier to emit)
+}
 
 interface ColorScheme {
   backgroundColor: string;
   textColor: string;
 }
 
-
-
 @Component({
   selector: 'app-table',
-  imports: [MaterialModule,CommonModule],
+  standalone: true,
+  imports: [CommonModule,MaterialModule],
   templateUrl: './table.component.html',
-  styleUrl: './table.component.scss'
+  styleUrls: ['./table.component.scss']
 })
 export class TableComponent {
-
-  displayedColumns: string[] = ['time', 'protocol', 'patient', 'type'];
   
-  dataSource: any[] = [
+  // Default table data
+  @Input() displayedColumns: string[] = ['time', 'protocol', 'patient', 'type'];
+  @Input() dataSource: any[] = [
   {
     time: '10:00 AM',
     protocol: 'Diabetes',
@@ -63,26 +68,31 @@ export class TableComponent {
     status: 'cancelled'
   }
 ];
+  @Input() enableRowSelection = true;
 
+  // Default actions
+  @Input() actions: TableAction[] = [
+    { label: 'Edit', icon: 'edit', action: 'edit' },
+    { label: 'Delete', icon: 'delete', action: 'delete' }
+  ];
 
+  @Output() rowSelected = new EventEmitter<any>();
+  @Output() actionClicked = new EventEmitter<{ action: string, row: any }>();
 
-  getStatusColor(status: string): string {
-  switch (status.toLowerCase()) {
-    case 'booked':
-      return 'green';     // or '#28a745' for bootstrap green
-    case 'pending':
-      return 'orange';    // or '#ffc107' for bootstrap warning
-    case 'cancelled':
-      return 'red';       // or '#dc3545' for bootstrap danger
-    default:
-      return 'gray';      // fallback color
+  onRowClick(row: any) {
+    if (this.enableRowSelection) {
+      this.rowSelected.emit(row);
+    }
   }
-}
+
+  selectedRow: any = null;
+
+  onActionClick(action: string, row: any) {
+    this.actionClicked.emit({ action, row });
+  }
 
 
-
-
-getBadgeColor(value: string): ColorScheme {
+  getBadgeColor(value: string): ColorScheme {
   const input = value.toLowerCase();
 
   switch (input) {
@@ -113,6 +123,7 @@ getBadgeColor(value: string): ColorScheme {
       return { backgroundColor: '#e2e3e5', textColor: '#6c757d' };  // Neutral grey
   }
 }
+
 
 
 }

@@ -10,7 +10,6 @@ export const routes: Routes = [
      {path: '', redirectTo: '/login', pathMatch: 'full'},
     {path:'login',component: LoginComponent},
     {path:'reset_password',component:ResetPasswordComponent},
-    {path:"urgent", component:UrgentFollowUpsComponent},
     {path:'portal',component:SidebarComponent,canActivate:[authGuard],
         children:[
             {path:'dashboard',component:DashboardComponent,canActivate:[authGuard]}

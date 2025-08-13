@@ -1,41 +1,8 @@
 .calls-container {
-      max-width: 1200px;
-      margin: 20px auto;
-      padding: 20px;
-      background: white;
-      border-radius: 8px;
-      // box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-      font-family: optima !important;
-      border:1px solid #E2E8F0;
+      width: 100%;
     }
 
-    .header {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      margin-bottom: 20px;
-      padding-bottom: 10px;
-      border-bottom: 1px solid #e0e0e0;
-    }
-
-    .header h2 {
-      margin: 0;
-      font-size: 24px;
-      font-weight: 500;
-      color: #333;
-    }
-
-    .view-all-btn {
-      color: #1976d2;
-      font-weight: 500;
-    }
-
-    .view-all-btn mat-icon {
-      margin-left: 4px;
-      font-size: 18px;
-      height: 18px;
-      width: 18px;
-    }
+   
 
     .calls-table {
       width: 100%;

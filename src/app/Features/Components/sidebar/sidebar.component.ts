@@ -87,12 +87,12 @@ export class SidebarComponent implements OnInit {
 
 
    toggleSidenav(): void {
-    this.sidenav.toggle();
+      this.sidenavOpened = !this.sidenavOpened;
   }
 
   closeSidenav(): void {
     if (window.innerWidth < 768) {
-      this.sidenav.close();
+      // this.sidenav.close();
     }
   }
 
