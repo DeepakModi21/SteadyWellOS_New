@@ -1,193 +1,137 @@
-
-
 <div class="dashboard_container">
-
-    <div class="dashboad_body">
-
-        <div class="header_section">
-
-            <div class="header_content">
-
-                <h2>Care Coordination Dashboard</h2>
-                <span>Monitor and manage AI-assisted patient calls</span>
-
-            </div>
-
-            <div class="header_actions">
-
-                <button mat-flat-button>
-                    <mat-icon>add</mat-icon>
-                    New User
-                </button>
-
-            </div>
-
-        </div>
-
-
-        <div class="page_content">
-
-            
-        <div class="upper_section">
-
- 
-<div class="card-row">
-
-  <app-card-layout heading="Today's Call" [number]="24" numberBgColor="#007AFF"  gradientStart="#E5F2FF"
- gradientEnd="rgba(229, 242, 255, 0)" status="8 completed"></app-card-layout>
-
-  <app-card-layout heading="Pending Tasks" [number]="12" numberBgColor="#E57D00" gradientStart="#FFF3E5"
-  gradientEnd="rgba(229, 242, 255, 0)" status="5 completed"></app-card-layout>
-
-  <app-card-layout heading="New Leads" [number]="18" numberBgColor="#48BB78" gradientStart="#E6FFF0"
-  gradientEnd="rgba(229, 242, 255, 0)" status="10 contacted"></app-card-layout>
-
-  <app-card-layout heading="Follow-ups" [number]="7" numberBgColor="#007AFF" gradientStart="#E5F2FF"
-  gradientEnd="rgba(229, 242, 255, 0)" status="2 completed"></app-card-layout>
-
-</div>
- 
-        </div>
-
-        <div class="middle_section">
-
-            <div class="table_section card_section">
-
-                <div class="card_header_section">
-
-                    <div class="header">
-        <h2>Today's Calls</h2>
-       <div class="view-all-wrapper">
-
-  <a class="view-all-btn">
-    View All
-  </a>
-
-
-<span class="material-icons material-icon">
-open_in_new
-</span>
-
-</div>
-
+  <div class="dashboad_body">
+    <div class="header_section">
+      <div class="header_content">
+        <h2>Care Coordination Dashboard</h2>
+        <span>Monitor and manage AI-assisted patient calls</span>
       </div>
 
-                </div>
-
-                <div class="table_cards">
-                    <app-table></app-table>
-
-                </div>
-
-            </div>
-
-            <div class="urgent_follow_ups_section card_section">
-
-                <div class="card_header_section">
-
-                    <div class="header">
-        <h2>Urgent Follow Ups</h2>
-       <div class="view-all-wrapper">
-
-  <a class="view-all-btn">
-    View All
-  </a>
-
-
-<span class="material-icons material-icon">
-open_in_new
-</span>
-
-</div>
-
+      <div class="header_actions">
+        <button mat-flat-button>
+          <mat-icon>add</mat-icon>
+          New User
+        </button>
       </div>
-
-                </div>
-
-                <div class="urgent_follow_ups_cards">
-                    <app-urgent-follow-ups></app-urgent-follow-ups>
-                </div>
-            </div>
-
-        </div>
-
-
-        <div class="lower_section">
-
-
-              <div class="patient_distribution_section card_section">
-
-                <div class="card_header_section">
-
-                    <div class="header">
-        <h2>Patient Distribution</h2>
-       <div class="view-all-wrapper">
-
-  <a class="view-all-btn">
-    View All
-  </a>
-
-
-<span class="material-icons material-icon">
-open_in_new
-</span>
-
-</div>
-
-      </div>
-
-                </div>
-
-
-                <div class="chart_section">
-                    
-                </div>
-
-
-            </div>
-
-            <div class="recent_activity_section card_section">
-
-
-                   <div class="card_header_section">
-
-                    <div class="header">
-        <h2>Recent Activity</h2>
-       <div class="view-all-wrapper">
-
-  <a class="view-all-btn">
-    View All
-  </a>
-
-
-<span class="material-icons material-icon">
-open_in_new
-</span>
-
-</div>
-
-      </div>
-
-                </div>
-
-                <div class="recent_activity_cards">
-
-                    <ng-container *ngFor="let activity of RecentActivities">
-
-                        <app-recent-activity [name]="activity.name" [message]="activity.message" [time]="activity.time" [date]="activity.date" [icon]="activity.icon" [activityType]="activity.type"></app-recent-activity>
-
-                    </ng-container>
-                </div>
-
-            </div>
-
-          
-
-        </div>
-
-
-        </div>
-
     </div>
 
+    <div class="page_content">
+      <div class="upper_section">
+        <div class="card-row">
+          <app-card-layout
+            heading="Today's Call"
+            [number]="24"
+            numberBgColor="#007AFF"
+            gradientStart="#E5F2FF"
+            gradientEnd="rgba(229, 242, 255, 0)"
+            status="8 completed"
+          ></app-card-layout>
+
+          <app-card-layout
+            heading="Pending Tasks"
+            [number]="12"
+            numberBgColor="#E57D00"
+            gradientStart="#FFF3E5"
+            gradientEnd="rgba(229, 242, 255, 0)"
+            status="5 completed"
+          ></app-card-layout>
+
+          <app-card-layout
+            heading="New Leads"
+            [number]="18"
+            numberBgColor="#48BB78"
+            gradientStart="#E6FFF0"
+            gradientEnd="rgba(229, 242, 255, 0)"
+            status="10 contacted"
+          ></app-card-layout>
+
+          <app-card-layout
+            heading="Follow-ups"
+            [number]="7"
+            numberBgColor="#007AFF"
+            gradientStart="#E5F2FF"
+            gradientEnd="rgba(229, 242, 255, 0)"
+            status="2 completed"
+          ></app-card-layout>
+        </div>
+      </div>
+
+      <div class="middle_section">
+        <div class="table_section card_section">
+          <div class="card_header_section">
+            <div class="header">
+              <h2>Today's Calls</h2>
+              <div class="view-all-wrapper">
+                <a class="view-all-btn"> View All </a>
+                <span class="material-icons material-icon"> open_in_new </span>
+              </div>
+            </div>
+          </div>
+          <div class="table_cards">
+            <app-table></app-table>
+          </div>
+        </div>
+        <div class="urgent_follow_ups_section card_section">
+          <div class="card_header_section">
+            <div class="header">
+              <h2>Urgent Follow Ups</h2>
+              <div class="view-all-wrapper">
+                <a class="view-all-btn"> View All </a>
+                <span class="material-icons material-icon"> open_in_new </span>
+              </div>
+            </div>
+          </div>
+          <div class="urgent_follow_ups_cards">
+            <app-urgent-follow-ups></app-urgent-follow-ups>
+               <app-urgent-follow-ups></app-urgent-follow-ups>
+                  <app-urgent-follow-ups></app-urgent-follow-ups>
+                     <app-urgent-follow-ups></app-urgent-follow-ups>
+                        <app-urgent-follow-ups></app-urgent-follow-ups>
+          </div>
+        </div>
+      </div>
+
+      <div class="lower_section">
+        <div class="patient_distribution_section card_section">
+          <div class="card_header_section">
+            <div class="header">
+              <h2>Patient Distribution</h2>
+              <div class="view-all-wrapper">
+                <a class="view-all-btn"> View All </a>
+                <span class="material-icons material-icon"> open_in_new </span>
+              </div>
+            </div>
+          </div>
+          <div class="chart_section">
+            <app-pie-chart></app-pie-chart>
+          </div>
+        </div>
+
+        <div class="recent_activity_section card_section">
+          <div class="card_header_section">
+            <div class="header">
+              <h2>Recent Activity</h2>
+              <div class="view-all-wrapper">
+                <a class="view-all-btn"> View All </a>
+
+                <span class="material-icons material-icon"> open_in_new </span>
+              </div>
+            </div>
+          </div>
+
+          <div class="recent_activity_cards">
+            <ng-container *ngFor="let activity of RecentActivities">
+              <app-recent-activity
+                [name]="activity.name"
+                [message]="activity.message"
+                [time]="activity.time"
+                [date]="activity.date"
+                [icon]="activity.icon"
+                [activityType]="activity.type"
+              ></app-recent-activity>
+            </ng-container>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>

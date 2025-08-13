@@ -64,14 +64,14 @@ export class PieChartComponent {
 //   return `${data.name}: ${data.value.toLocaleString()} units`;
 // }
 
-pieChartLabels: string[] = ['Red', 'Blue', 'Yellow'];
-  pieChartColors: string[] = ['#FF6384', '#36A2EB', '#FFCE56'];
+pieChartLabels: string[] = ['Heart Failure', 'Cancer','COPD', 'Fit', 'General'];
+  pieChartColors: string[] = ['#E53E3E', '#E57D00', '#005FCC','#48BB78','#284B5F'];
 
   pieChartData: ChartData<'pie', number[], string> = {
     labels: this.pieChartLabels,
-    datasets: [
+    datasets: [ 
       {
-        data: [300, 500, 100],
+        data: [200, 100, 250,150,300],
         backgroundColor: this.pieChartColors
       }
     ]

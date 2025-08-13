@@ -5,11 +5,12 @@ import { CardLayoutComponent } from '../card-layout/card-layout.component';
 import { CommonModule } from '@angular/common';
 import { UrgentFollowUpsComponent } from '../urgent-follow-ups/urgent-follow-ups.component';
 import { RecentActivityComponent } from '../../../Shared/pages/recent-activity/recent-activity.component';
+import { PieChartComponent } from '../pie-chart/pie-chart.component';
 
 
 @Component({
   selector: 'app-dashboard',
-  imports: [MaterialModule,TableComponent,CardLayoutComponent,CommonModule,UrgentFollowUpsComponent,RecentActivityComponent],
+  imports: [MaterialModule,TableComponent,CardLayoutComponent,CommonModule,UrgentFollowUpsComponent,RecentActivityComponent, PieChartComponent],
   templateUrl: './dashboard.component.html',
   styleUrl: './dashboard.component.scss'
 })
