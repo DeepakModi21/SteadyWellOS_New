@@ -9,7 +9,7 @@
       padding: 0 24px;
       box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
       z-index: 700;
-      position: sticky;
+      position: fixed;
       top: 0px;
       // margin-bottom: 26px;
     }
@@ -174,10 +174,7 @@
       opacity: 0.7;
     }
 
-    .profile-menu {
-      background-color: white;
-      box-shadow: 0 2px 4px rgba(0,0,0,0.2);
-    }
+   
 
     .profile-menu button {
       display: flex;
@@ -199,4 +196,46 @@
       display: flex;
       gap: 8px;
       align-items: flex-end;
+    }
+
+
+    ::ng-deep  .profile-menu {
+      background-color: white !important;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+      margin-top: 10px !important;
+    }
+
+    ::ng-deep .profile-menu .mat-mdc-menu-content {
+       max-width: 260px !important;
+       min-width: 165px !important  ;
+       padding-right: 6px;
+       padding-left: 6px;
+    }
+
+    ::ng-deep .profile-menu .mat-mdc-menu-item {
+      min-height: 38px !important;
+    }
+
+    ::ng-deep .profile-menu .mat-mdc-menu-item-text {
+      font-family: Optima !important;
+font-weight: 300 !important;
+font-style: Normal !important;
+font-size: 17px !important;
+// leading-trim: NONE;
+// line-height: 100%;
+letter-spacing: 0%;
+color: #1A202C !important;
+
+    }
+
+    ::ng-deep .divider
+    {
+        color: #E2E8F0 !important;
+        border-top-color: #E2E8F0 !important;
+    }
+
+    ::ng-deep .LogoutButton .mat-mdc-menu-item-text, .LogoutButton mat-icon
+    {
+      color: #E53E3E !important;
+      font-weight: 600 !important;
     }

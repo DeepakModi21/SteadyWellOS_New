@@ -1,0 +1,72 @@
+<!-- recent-activity-card.component.html -->
+
+<div class="recent_activity_block">
+
+  <mat-card class="activity-card">
+
+    <div class="card_section">
+
+      <div class="activity_information">
+
+         <div mat-card-avatar class="activity-icon">
+      <span class="material-icons material-icon">
+{{icon}}
+</span> 
+    </div>
+
+    <div class="card_content">
+
+       <mat-card-title class="activity-name">{{name}}</mat-card-title>
+
+
+         <span class="activity-message">
+    {{message}}
+  </span>
+
+       <div class="date_time">
+
+          <span class="activity-time">
+
+            <span class="material-icons material-icon">
+schedule
+</span>
+            
+            {{time}}</span>
+
+          <span class="activity-date" *ngIf="date">{{date}}</span>
+       </div>
+   
+    
+ 
+
+
+
+    </div>
+
+
+      </div>
+
+   
+
+     <div class="card_action_section">
+
+      <span class="material-icons">
+more_vert
+</span>
+    </div>
+
+
+
+    </div>
+
+   
+
+
+   
+
+
+
+</mat-card>
+
+
+</div>
