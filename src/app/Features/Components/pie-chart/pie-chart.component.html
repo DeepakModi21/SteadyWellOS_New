@@ -1,0 +1,36 @@
+ <!-- <ngx-charts-advanced-pie-chart
+  [view]="view"
+  [scheme]="colorScheme"
+  [results]="single"
+  [gradient]="gradient"
+   [tooltipText]="tooltipText"
+  (select)="onSelect($event)"
+  (activate)="onActivate($event)"
+  (deactivate)="onDeactivate($event)"
+  >
+</ngx-charts-advanced-pie-chart> 
+
+
+<div class="custom-legend">
+  <div class="legend-item" *ngFor="let item of single; let i = index">
+    <span class="color-box" [style.background]="colorScheme.domain[i]"></span>
+    <span class="legend-name">{{ item.name }}</span>
+  </div>
+</div>  -->
+
+ <div style="display: block; width: 250px; height: 250px;">
+      <canvas
+        baseChart
+        [data]="pieChartData"
+        [type]="'pie'"
+        [options]="pieChartOptions">
+      </canvas>
+    </div>
+
+    <!-- Custom Legend -->
+    <div *ngFor="let label of pieChartLabels; let i = index"
+         style="display:flex; align-items:center; margin-top:5px;">
+      <div [style.background]="pieChartColors[i]"
+           style="width:15px; height:15px; margin-right:5px; "></div>
+      <span>{{ label }} – {{ pieChartData.datasets[0].data[i] }}</span>
+    </div>

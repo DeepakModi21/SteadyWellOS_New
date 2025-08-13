@@ -1,7 +1,5 @@
 .patient-card {
-  width: 60%;
-  max-width: 438px;
-  height: 100px;
+  width: 100%;
   background: #fff;
   border-radius: 8px;
   border: 1px solid #E53E3E; 
@@ -94,4 +92,8 @@
     height: 20px;
     object-fit: contain;
   }
+}
+
+img.icon.clickable {
+    margin-right: 24px;
 }

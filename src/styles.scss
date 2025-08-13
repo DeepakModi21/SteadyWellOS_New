@@ -2,3 +2,19 @@
 
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+ngx-charts-advanced-pie-chart .legend {
+  display: none !important;
+}
+
+.advanced-pie-legend-wrapper {
+    display: none !important;
+}
+
+.advanced-pie-legend {
+  display: none !important;
+}
+
+.advanced-pie-legend-wrapper {
+    display: none !important;
+}
