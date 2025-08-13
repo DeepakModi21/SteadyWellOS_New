@@ -1,0 +1,97 @@
+.patient-card {
+  width: 60%;
+  max-width: 438px;
+  height: 100px;
+  background: #fff;
+  border-radius: 8px;
+  border: 1px solid #E53E3E; 
+  padding: 12px 16px;
+  opacity: 1;
+  gap: 8px;
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
+
+  font-family: 'Optima', sans-serif;
+
+  .row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  /* Row 1 - Name */
+  .row-top {
+    .user-info {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+
+      .name {
+        font-family: 'Optima', sans-serif;
+        font-weight: 550;
+        font-style: medium;
+        font-size: 18px;
+        line-height: 100%;
+        letter-spacing: 0;
+      }
+    }
+  }
+
+  /* Row 2 - Content text */
+  .row-middle {
+    .content-text {
+      font-family: 'Optima', sans-serif;
+      font-weight: 400;
+      font-style: normal;
+      font-size: 16px;
+      line-height: 100%;
+      letter-spacing: 0;
+      color: #444;
+      flex: 1;
+      margin-right: 8px;
+    }
+
+    .action-icons {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+
+      .icon {
+        width: 20px;
+        height: 20px;
+        cursor: pointer;
+        transition: transform 0.2s ease;
+
+        &:hover {
+          transform: scale(1.1);
+        }
+      }
+    }
+  }
+
+  /* Row 3 - Time text */
+  .row-bottom {
+    gap: 6px;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+
+    .time-text {
+      font-family: 'Optima', sans-serif;
+      font-weight: 400;
+      font-style: normal;
+      font-size: 16px;
+      line-height: 100%;
+      letter-spacing: 0;
+      color: #666;
+    }
+  }
+
+  /* Common icon styles */
+  .icon {
+    width: 20px;
+    height: 20px;
+    object-fit: contain;
+  }
+}
