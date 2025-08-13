@@ -4,6 +4,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { LoaderService } from '../../../Shared/services/loader.service';
+import { LoaderComponent } from '../../../Shared/loader/loader/loader.component';
 
 
 
@@ -11,7 +12,7 @@ import { LoaderService } from '../../../Shared/services/loader.service';
 
 @Component({
   selector: 'app-reset-password',
-  imports: [MaterialModule,CommonModule,RouterModule],
+  imports: [MaterialModule,CommonModule,RouterModule,LoaderComponent],
   templateUrl: './reset-password.component.html',
   styleUrl: './reset-password.component.scss'
 })
@@ -31,9 +32,9 @@ export class ResetPasswordComponent {
    onSubmit() {
     if (this.resetForm.valid) {
       const email = this.resetForm.get('email')?.value;
-      console.log('Sending reset link to:', email);
+      // console.log('Sending reset link to:', email);
       // Add your password reset logic here
-      alert('Password reset link sent to ' + email);
+      // alert('Password reset link sent to ' + email);
 
       this.loading=true;
 

@@ -4,6 +4,46 @@
 
     <div class="dashboad_body">
 
+        <div class="header_section">
+
+            <div class="header_content">
+
+                <h2>Care Coordination Dashboard</h2>
+                <span>Monitor and manage AI-assisted patient calls</span>
+
+            </div>
+
+            <div class="header_actions">
+
+                <button mat-flat-button>
+                    <mat-icon>add</mat-icon>
+                    New User
+                </button>
+
+            </div>
+
+        </div>
+
+
+        <div class="page_content">
+
+            
+        <div class="upper_section">
+
+ 
+<div class="card-row">
+  <app-card-layout heading="Today's Call" [number]="24" numberBgColor="#007AFF"  gradientStart="#E5F2FF"
+ gradientEnd="rgba(229, 242, 255, 0)" status="8 completed"></app-card-layout>
+  <app-card-layout heading="Pending Tasks" [number]="12" numberBgColor="#E57D00" gradientStart="#FFF3E5"
+  gradientEnd="rgba(229, 242, 255, 0)" status="5 completed"></app-card-layout>
+  <app-card-layout heading="New Leads" [number]="18" numberBgColor="#48BB78" gradientStart="#E6FFF0"
+  gradientEnd="rgba(229, 242, 255, 0)" status="10 contacted"></app-card-layout>
+  <app-card-layout heading="Follow-ups" [number]="7" numberBgColor="#007AFF" gradientStart="#E5F2FF"
+  gradientEnd="rgba(229, 242, 255, 0)" status="2 completed"></app-card-layout>
+</div>
+ 
+        </div>
+
         <div class="middle_section">
 
             <div class="table_section">
@@ -11,6 +51,10 @@
             </div>
 
         </div>
+
+
+        </div>
+
     </div>
 
 </div>
