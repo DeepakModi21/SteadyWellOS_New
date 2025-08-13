@@ -1,47 +1,35 @@
 import { CommonModule } from '@angular/common';
 import { Component, Input } from '@angular/core';
-
+ 
 @Component({
   selector: 'app-card-layout',
-   standalone: true, 
+  standalone: true,
   imports: [CommonModule],
   templateUrl: './card-layout.component.html',
-  styleUrl: './card-layout.component.scss'
+  styleUrls: ['./card-layout.component.scss']
 })
-
 export class CardLayoutComponent {
- @Input() heading: string = '';
-  @Input() number: number | string = '';
+  @Input() heading: string = '';
+  @Input() number!: number;
   @Input() status: string = '';
-   @Input() numberBgColor: string = '#007AFF';
-    @Input() gradientStart: string = '#E6F2FF';
+  @Input() numberBgColor: string = '#007AFF';
+  @Input() numberColor!: string;
+ 
+  // Gradient colors
+  @Input() gradientStart: string = '#E6F2FF';
   @Input() gradientEnd: string = 'rgba(229, 242, 255, 0)';
-
-  /** Default gradient from Figma */
-  @Input() gradientColors: [string, string] = ['#E6F2FF', 'rgba(229, 242, 255, 0)'];
-
-  /** Computed gradient style */
-  get gradientStyle() {
+ 
+  // For the number text
+  get numberStyle() {
+    return { color: this.numberBgColor };
+  }
+ 
+  // For gradient background
+  getGradientStyle() {
     return {
-      background: `linear-gradient(180deg, ${this.gradientColors[0]} 0%, ${this.gradientColors[1]} 100%)`
+      background: `linear-gradient(90deg, ${this.gradientStart} 0%, ${this.gradientEnd} 100%)`
     };
   }
-
-   get numberStyle() {
-    return {
-       color: this.numberBgColor
-    };
-  }
-
-
-   @Input() numberColor!: string;       // Dynamic number color
-     // Dynamic gradient end
-
-getGradientStyle() {
-  return {
-    background: `linear-gradient(90deg, ${this.gradientStart} 0%, ${this.gradientEnd} 100%)`
-  };
 }
-
-
-}
+ 
+ 

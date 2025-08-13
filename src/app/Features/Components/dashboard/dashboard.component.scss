@@ -19,9 +19,89 @@
     display: flex;
     gap: 8px;
     width: 100%;
+    // margin-top: 32px;
 }
 
 .table_section
 {
     width: 60%;
+}
+
+
+.card-row {
+
+  display: flex;
+
+  flex-wrap: wrap; /* ✅ Allow wrapping */
+
+  gap: 24px; /* Space between cards */
+
+  justify-content: flex-start; /* Keep cards aligned left */
+ 
+  width: 100%; /* ✅ Take full screen width */
+
+  max-width: 100%; /* ✅ No horizontal overflow */
+
+  box-sizing: border-box; /* ✅ Include padding in width calc */
+
+  padding: 0 12px; /* ✅ Small padding on sides for breathing room */
+
+  overflow-x: hidden; /* ✅ Ensure no horizontal scroll */
+
+}
+ 
+app-card-layout {
+
+  flex: 1 1 calc(25% - 50px); /* ✅ 4 cards in row accounting for gap */
+
+  min-width: 180px; /* ✅ Prevent too small cards */
+
+  box-sizing: border-box; /* ✅ Avoid overflow due to padding */
+
+}
+ 
+.header_section
+{
+    margin-bottom: 34px;
+    margin-top: 15px;
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+
+}
+
+.header_section h2
+{
+    font-family: Optima;
+font-weight: 550;
+font-style: Medium;
+font-size: 28px;
+// leading-trim: NONE;
+line-height: 35px;
+letter-spacing: 0%;
+
+margin: 0;
+padding: 0;
+
+color: #1A202C;
+
+}
+
+.header_section span
+{
+    font-family: Optima;
+font-weight: 400;
+font-style: Normal;
+font-size: 16px;
+// leading-trim: NONE;
+line-height: 100%;
+letter-spacing: 0%;
+color: #718096;
+
+}
+
+.header_section .header_actions ::ng-deep .mat-mdc-unelevated-button:not(:disabled){
+
+    background-color: #284B5F !important;
+
 }
