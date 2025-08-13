@@ -208,6 +208,8 @@
     ::ng-deep .profile-menu .mat-mdc-menu-content {
        max-width: 260px !important;
        min-width: 165px !important  ;
+       padding-right: 6px;
+       padding-left: 6px;
     }
 
     ::ng-deep .profile-menu .mat-mdc-menu-item {

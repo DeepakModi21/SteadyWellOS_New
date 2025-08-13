@@ -157,7 +157,13 @@ color: #718096;
     vertical-align: center;
     display: flex;
     align-items: center;
+    cursor: pointer;
   }
+    .view-all-wrapper:hover
+    {
+      text-decoration: underline;
+      color: #007AFF;
+    }
 
     .view-all-wrapper a
 {
@@ -174,11 +180,6 @@ margin-right: 5px;
 
 }
 
-.view-all-wrapper a:hover
-{
-  text-decoration: underline;
-}
-
 .view-all-wrapper .material-icon
 {
   font-weight: 450;
@@ -189,6 +190,8 @@ line-height: 100%;
 letter-spacing: 0%;
 color: #007AFF;
 }
+
+
 
 .lower_section
 {
