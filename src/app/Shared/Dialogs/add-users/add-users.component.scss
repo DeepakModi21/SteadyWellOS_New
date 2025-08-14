@@ -1,482 +1,249 @@
-*
-{
+* {
   box-sizing: border-box;
-}
-.add-users-container {
-  padding: 20px;
-  width: 100%;
-  background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+  font-family: 'Optima' !important;
 }
 
-.form-card {
-  // margin: 20px auto;
-  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
-  border-radius: 12px;
-  overflow: hidden;
-  background: #ffffff;
-  
-  mat-card-header {
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-    color: white;
-    padding: 12px;
-    
-    mat-card-title {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      font-size: 18px;
-      font-weight: 500;
-      margin: 0;
-      
-      mat-icon {
-        font-size: 23px;
-        width: 23px;
-        height: 23px;
-        display: flex;
-      }
-    }
-    
-    mat-card-subtitle {
-      color: rgba(255, 255, 255, 0.8);
-      font-size: 14px;
-      margin: 3px 0 0 37px;
-    }
-  }
-  
-  mat-card-content {
-    // padding: 32px;
-        padding: 17px;
-    height: 429px;
-    overflow: auto;
-  }
+.custom-dialog-container ::ng-deep .mat-mdc-dialog-surface {
+   border-radius: 8px !important;
 }
 
-.user-form {
-  .form-section {
-    margin-bottom: 40px;
-    padding: 24px;
-    border: 1px solid #e0e0e0;
-    border-radius: 8px;
-    background: #fafafa;
-    transition: all 0.3s ease;
-    
-    &:hover {
-      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
-    }
-    
-    .section-title {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      margin: 0 0 24px 0;
-      padding-bottom: 12px;
-      border-bottom: 2px solid #667eea;
-      color: #333;
-      font-size: 20px;
-      font-weight: 500;
-      
-      mat-icon {
-        color: #667eea;
-        font-size: 24px;
-        width: 24px;
-        height: 24px;
-      }
-    }
-  }
-  
-  .form-row {
+.dialog_section {
+  width: 870px;
+  padding: 10px 13px;
+
+  .dialog_container {
+    max-height: 78vh !important;
+  overflow-y: auto;
     display: flex;
-    gap: 16px;
-    margin-bottom: 31px;
-    align-items: flex-start;
-    
-    &:last-child {
-      margin-bottom: 0;
-    }
-  }
-  
-  // Field width classes
-  .full-width {
-    flex: 1;
+    flex-direction: column;
     width: 100%;
-  }
-  
-  .half-width {
-    flex: 1;
-    min-width: 0;
-  }
-  
-  .three-quarter-width {
-    flex: 3;
-  }
-  
-  .quarter-width {
-    flex: 1;
-  }
-  
-  // Form field styling
-  mat-form-field {
-    &.mat-mdc-form-field {
-      .mat-mdc-text-field-wrapper {
-        background-color: white;
-        border-radius: 8px;
-      }
-      
-      .mat-mdc-form-field-focus-overlay {
-        background-color: rgba(102, 126, 234, 0.04);
-      }
-    }
-    
-    .mat-mdc-input-element {
-      color: #333;
-    }
-    
-    .mat-mdc-form-field-label {
-      color: #666;
-    }
-    
-    &.mat-focused {
-      .mat-mdc-form-field-label {
-        color: #667eea;
-      }
-    }
-  }
-}
-
-
-.add-users-container ::ng-deep .mat-mdc-form-field-subscript-wrapper
-{
-  height: 0px !important;
-}
-
-.add-users-container ::ng-deep .mat-mdc-form-field
-{
-  height: 45px !important;
-  /* overflow: hidden; */
-}
-
-.add-users-container ::ng-deep .mat-mdc-text-field-wrapper
-{
-  height: 100% !important;
-}
-
-.add-users-container ::ng-deep .mdc-text-field--outlined .mat-mdc-form-field-infix
-{
-  padding: 0px !important;
-  height: 100% !important;
-  min-height: 45px !important;
-  display: flex;
-  align-items: center;
-}
-
-.add-users-container ::ng-deep .mat-mdc-text-field-wrapper .mat-mdc-form-field-flex .mat-mdc-floating-label {
-    top: calc(var(--mat-form-field-container-height, 45px) / 2) !important;
-}
-
-.add-users-container ::ng-deep .mat-mdc-form-field.mat-form-field-animations-enabled .mdc-floating-label
-{
-   top:calc(var(--mat-form-field-container-height, 45px) / 2) !important;
-}
-
-// User Type Radio Group Styling
-.user-type-radio-group {
-  display: flex;
-  gap: 24px;
-  flex-wrap: wrap;
-  margin: 16px 0;
-  
-  .user-type-option {
-    flex: 1;
-    min-width: 200px;
-    padding: 6px;
-    border: 2px solid #e0e0e0;
-    border-radius: 12px;
-    background: white;
-    transition: all 0.3s ease;
-    cursor: pointer;
-    
-    &:hover {
-      border-color: #667eea;
-      box-shadow: 0 4px 12px rgba(102, 126, 234, 0.15);
-      transform: translateY(-2px);
-    }
-    
-    &.mat-mdc-radio-button-checked {
-      border-color: #667eea;
-      background: linear-gradient(135deg, rgba(102, 126, 234, 0.1) 0%, rgba(118, 75, 162, 0.1) 100%);
-      box-shadow: 0 4px 12px rgba(102, 126, 234, 0.2);
-    }
-    
-    .mdc-radio {
-      display: none;
-    }
-    
-    .radio-content {
-      display: flex;
-
-      align-items: center;
-      gap: 12px;
-      text-align: center;
-      
-      mat-icon {
-        font-size: 23px;
-        width: 23px;
-        height: 23px;
-        color: #667eea;
-      }
-
-      
-      span {
-        font-size: 18px;
-        font-weight: 500;
-        color: #333;
-      }
-    }
-  }
-}
-
-
-.user-type-radio-group ::ng-deep .mat-mdc-radio-button .mdc-radio
-{
-  padding: 2px !important;
-  display: flex;
-  align-items: center;
-}
-
-     .user-type-radio-group  ::ng-deep .mat-mdc-radio-button .mdc-radio__background
-      {
-        width: 15px !important;
-        height: 15px !important;
-      ;
-      }
-
-     .user-type-radio-group  ::ng-deep .mat-mdc-radio-button .mdc-radio__background::before
-{
-
-   width: 15px !important;
-        height: 15px !important;
-
-}
-
-.add-users-container ::ng-deep .mat-mdc-radio-button .mdc-radio__inner-circle 
-{
-  border-width: 7px !important;
-}
-
-.add-users-container ::ng-deep .mdc-notched-outline__notch
-{
-  border-right: none !important;
-}
-
-
-.user-type-error {
-  color: #f44336;
-  font-size: 12px;
-  margin-top: 8px;
-  display: block;
-}
-
-// Dynamic Section Styling
-.dynamic-section {
-  animation: slideIn 0.5s ease-out;
-  border: 2px solid #667eea;
-  border-radius: 12px;
-  background: white;
-  padding: 24px;
-  margin-top: 24px;
-}
-
-@keyframes slideIn {
-  from {
-    opacity: 0;
-    transform: translateY(20px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-// Form Actions Styling
-.form-actions {
-  display: flex;
-  justify-content: flex-end;
-  gap: 16px;
-  margin-top: 40px;
-  padding-top: 24px;
-  border-top: 1px solid #e0e0e0;
-  
-  .action-button {
-    min-width: 120px;
-    height: 48px;
-    border-radius: 8px;
-    font-weight: 500;
-    text-transform: none;
-    display: flex;
-    align-items: center;
+    padding: 0 20px;
     gap: 8px;
-    transition: all 0.3s ease;
-    
-    mat-icon {
-      font-size: 20px;
-      width: 20px;
-      height: 20px;
-    }
-    
-    &:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
-    }
-    
-    &.submit-button {
-      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-      color: white;
-      
-      &:disabled {
-        background: #ccc;
-        color: #666;
-        cursor: not-allowed;
-        transform: none;
-        box-shadow: none;
+  }
+
+  .dialog_header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 0;
+    width: 100%;
+    border-bottom: 1px solid #e0e0e0;
+
+    .header_content {
+      display: flex;
+      flex-direction: column;
+
+      h2 {
+        font-family: 'Optima';
+        font-weight: 550;
+        font-style: Medium;
+        font-size: 24px;
+        // line-height: 23px;
+        margin: 0;
+        padding:0;
+        margin-bottom: 3px;
+        letter-spacing: 0%;
+        color: #2C3B44;
+      }
+      p
+      {
+        font-family: Optima;
+font-weight: 400;
+font-style: Normal;
+font-size: 16px;
+letter-spacing: 0%;
+color: #718096;
+margin: 0;
+padding: 0;
+
       }
     }
   }
-}
 
-// Error styling
-mat-error {
-  font-size: 12px;
-  margin-top: 4px;
-  display: flex;
-  align-items: center;
-  gap: 4px;
-  
-  &::before {
-    content: "⚠";
-    color: #f44336;
-  }
-}
+  .dialog_information_body
+  {
 
-// Hint styling
-mat-hint {
-  font-size: 12px;
-  color: #666;
-  margin-top: 4px;
-}
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
 
-// Responsive Design
-@media (max-width: 768px) {
-  .add-users-container {
-    padding: 10px;
-  }
-  
-  .form-card {
-    margin: 10px;
-    
-    mat-card-content {
-      padding: 16px;
-    }
-  }
-  
-  .form-row {
-    flex-direction: column;
-    gap: 12px;
-  }
-  
-  .half-width,
-  .three-quarter-width,
-  .quarter-width {
-    width: 100%;
-  }
-  
-  .user-type-radio-group {
-    flex-direction: column;
-    gap: 16px;
-    
-    .user-type-option {
-      min-width: auto;
-    }
-  }
-  
-  .form-actions {
-    flex-direction: column;
-    
-    .action-button {
+    .user_types
+    {
+      display: flex;
+      flex-direction: column;
+      gap: 19px;
+      padding: 20px 0;
       width: 100%;
+      border-bottom: 1px solid #e0e0e0;
+
+
+      
+
+      
+       label
+    {
+      font-family: Optima;
+font-weight: 550;
+font-style: Medium;
+font-size: 18px;
+line-height: 100%;
+letter-spacing: 0%;
+color: #2C3B44;
+
     }
-  }
+
+    }
+
+    .personal_information
+    {
+      padding: 20px 0;
+
+            border-bottom: 1px solid #e0e0e0;
+       label
+    {
+      font-family: Optima;
+font-weight: 550;
+font-style: Medium;
+font-size: 18px;
+line-height: 100%;
+letter-spacing: 0%;
+color: #2C3B44;
+
+    }
+
+    }
+
+    .patient_information
+    {
+      padding: 20px 0;
+       border-bottom: 1px solid #e0e0e0;
+
+       label
+    {
+      font-family: Optima;
+font-weight: 550;
+font-style: Medium;
+font-size: 18px;
+line-height: 100%;
+letter-spacing: 0%;
+color: #2C3B44;
+
+    }
+    }
+
+    .Emergency_contact_information
+    {
+
+      padding: 20px 0;
+
+            border-bottom: 1px solid #e0e0e0;
+       label
+    {
+      font-family: Optima;
+font-weight: 550;
+font-style: Medium;
+font-size: 18px;
+line-height: 100%;
+letter-spacing: 0%;
+color: #2C3B44;
+
+    }
+
+    }
+
+
+
+    .radio_group
+    {
+      width: 100%;
+      display: flex;
+      gap: 20px ;
+    }
+
+
+    .formRow {
+      margin: 25px 0px 0px 0px;
+      gap: 15px;
+      justify-content: space-between;
+  padding: 0.5rem;
+  box-sizing: border-box;
+  flex-wrap: wrap;
+  width: 100%;
+  display: flex;
 }
 
-// Success and Error Snackbar Styling
-.add-users-container ::ng-deep {
-  .success-snackbar {
-    background-color: #4caf50 !important;
-    color: white !important;
-  }
-  
-  .error-snackbar {
-    background-color: #f44336 !important;
-    color: white !important;
-  }
+.full-width {
+  width: 100%;
 }
 
-// Loading state
-.form-loading {
-  position: relative;
-  
-  &::after {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background: rgba(255, 255, 255, 0.8);
+.half-width {
+  width: 48.5%;
+}
+
+    
+    .radio_group ::ng-deep .mat-mdc-radio-button .mdc-radio
+    {
+      padding: 0px !important;
+    }
+
+    .radio_group {
+  display: flex;
+  gap: 1rem;
+
+  .custom_radio {
     display: flex;
     align-items: center;
-    justify-content: center;
-    z-index: 10;
-  }
-}
+    cursor: pointer;
 
-// Focus states
-mat-form-field {
-  &.mat-focused {
-    .mat-mdc-text-field-wrapper {
-      box-shadow: 0 0 0 2px rgba(102, 126, 234, 0.2);
+    input[type="radio"] {
+      appearance: none;
+      width: 15px;
+      height: 15px;
+      border: 2px solid #007bff;
+      border-radius: 50%;
+      margin-right: 8px;
+      position: relative;
+      cursor: pointer;
+      outline: none;
+
+      &:checked {
+        // background-color: #007bff;
+       
+        border-color: #007AFF;
+
+        &::after {
+          content: '';
+          width: 8px;
+          height: 9px;
+          background: white;
+          border-radius: 50%;
+          position: absolute;
+           background-color: #007AFF;
+          top: 2px;
+          left: 2.5px;
+        }
+      }
+    }
+
+    .radio_label {
+      font-size: 14px;
+      font-family: Optima;
+font-weight: 400;
+font-style: Normal;
+font-size: 16px;
+// leading-trim: NONE;
+line-height: 100%;
+letter-spacing: 0%;
+color:#2C3B44 !important;
+
     }
   }
 }
 
-// Custom scrollbar for textarea
-textarea {
-  &::-webkit-scrollbar {
-    width: 6px;
   }
-  
-  &::-webkit-scrollbar-track {
-    background: #f1f1f1;
-    border-radius: 6px;
-  }
-  
-  &::-webkit-scrollbar-thumb {
-    background: #c1c1c1;
-    border-radius: 6px;
-    
-    &:hover {
-      background: #a8a8a8;
-    }
-  }
-}
 
-// ::ng-deep .cdk-overlay-pane {
-//   max-width: 1000px !important;
- 
-// }
-// ::ng-deep .mat-mdc-dialog-panel {
-//   width: 75%;
-//   max-width: 1000px !important;
-// ::ng-deep .mat-mdc-dialog-surface
-// {
-//   background: none !important;
-// }
+
+
+
+
+}

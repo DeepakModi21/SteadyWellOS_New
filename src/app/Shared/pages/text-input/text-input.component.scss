@@ -1,0 +1,70 @@
+
+
+.text_input_section
+{
+   width: 100%;
+   box-sizing: border-box;
+   font-family: 'optima' !important;
+   margin-bottom: 10px;
+}
+
+.text_input_section ::ng-deep .text_mat_form_field
+{
+    width: 100%;
+    height: 44px !important;
+    border-radius: 5px !important;
+    // border:1px solid #D2D5DA !important;
+    
+}
+
+.text_input_section ::ng-deep .text_mat_form_field .mat-mdc-text-field-wrapper
+{
+   height: 100% !important;
+}
+
+.text_input_section ::ng-deep .text_mat_form_field .mat-mdc-form-field-infix
+{
+   min-height: 44px !important;
+   width: 100% !important;
+   display: flex !important;
+   justify-content: center !important;
+   min-width: none !important;
+   padding: 0px !important;
+}
+
+.text_input_section ::ng-deep .text_mat_form_field .mdc-text-field--outlined:not(.mdc-text-field--disabled) .mat-mdc-notch-piece
+{
+    border-color: #D2D5DA !important;
+}
+
+.text_input
+{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+input::placeholder
+{
+    color: #718096 !important;
+    font-family: Optima;
+font-weight: 400;
+font-style: Normal;
+font-size: 16px;
+// leading-trim: NONE;
+line-height: 100%;
+letter-spacing: 0%;
+
+}
+
+.text_input .input_label
+{
+    font-family: Optima;
+font-weight: 400;
+font-style: Normal;
+font-size: 16px;
+// leading-trim: NONE;
+line-height: 100%;
+letter-spacing: 0%;
+color: #718096 !important;
+}
