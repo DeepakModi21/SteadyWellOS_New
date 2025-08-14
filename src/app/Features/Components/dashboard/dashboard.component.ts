@@ -8,11 +8,12 @@ import { RecentActivityComponent } from '../../../Shared/pages/recent-activity/r
 import { PieChartComponent } from '../pie-chart/pie-chart.component';
 import { MatDialog } from '@angular/material/dialog';
 import { AddUsersComponent } from '../../../Shared/Dialogs/add-users/add-users.component';
+import { SelectorComponent } from '../../../Shared/pages/selector/selector.component';
 
 
 @Component({
   selector: 'app-dashboard',
-  imports: [MaterialModule,TableComponent,CardLayoutComponent,CommonModule,UrgentFollowUpsComponent,RecentActivityComponent, PieChartComponent],
+  imports: [MaterialModule,TableComponent,CardLayoutComponent,CommonModule,UrgentFollowUpsComponent,RecentActivityComponent, PieChartComponent,SelectorComponent],
   templateUrl: './dashboard.component.html',
   styleUrl: './dashboard.component.scss'
 })

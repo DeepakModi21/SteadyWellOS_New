@@ -113,6 +113,26 @@ color: #2C3B44;
 
     }
 
+    .advance_directive_information
+    {
+
+      padding: 20px 0;
+
+            border-bottom: 1px solid #e0e0e0;
+        label
+    {
+      font-family: Optima;
+font-weight: 550;
+font-style: Medium;
+font-size: 18px;
+line-height: 100%;
+letter-spacing: 0%;
+color: #2C3B44;
+
+    }
+
+    }
+
     .patient_information
     {
       padding: 20px 0;
@@ -199,7 +219,7 @@ color: #2C3B44;
       appearance: none;
       width: 15px;
       height: 15px;
-      border: 2px solid #007bff;
+      border: 2px solid #284B5F;
       border-radius: 50%;
       margin-right: 8px;
       position: relative;
@@ -209,7 +229,7 @@ color: #2C3B44;
       &:checked {
         // background-color: #007bff;
        
-        border-color: #007AFF;
+        border-color: #284B5F;
 
         &::after {
           content: '';
@@ -218,7 +238,7 @@ color: #2C3B44;
           background: white;
           border-radius: 50%;
           position: absolute;
-           background-color: #007AFF;
+           background-color: #284B5F;
           top: 2px;
           left: 2.5px;
         }
@@ -246,4 +266,14 @@ color:#2C3B44 !important;
 
 
 
+}
+
+.dioalog_action_section
+{
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  padding: 20px 0;
+  gap: 15px;
+  
 }

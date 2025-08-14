@@ -71,6 +71,19 @@
     >
   </app-text-input>
 
+   <app-check-box
+    *ngSwitchCase="'checkbox'"
+    [label]="field.label"
+  ></app-check-box>
+
+
+  <app-selector
+    *ngSwitchCase="'select'"
+    [label]="field.label"
+    [options]="field.options ?? []"
+    [placeholder]="field.placeholder ?? ''"
+  ></app-selector>
+
    </div>
 
 
@@ -135,6 +148,20 @@
     >
   </app-text-input>
 
+
+ <app-check-box
+    *ngSwitchCase="'checkbox'"
+    [label]="field.label"
+  ></app-check-box>
+
+
+  <app-selector
+    *ngSwitchCase="'select'"
+    [label]="field.label"
+    [options]="field.options ?? []"
+    [placeholder]="field.placeholder ?? ''"
+  ></app-selector>
+
    </div>
 
 
@@ -192,6 +219,19 @@
     >
   </app-text-input>
 
+   <app-check-box
+    *ngSwitchCase="'checkbox'"
+    [label]="field.label"
+  ></app-check-box>
+
+
+  <app-selector
+    *ngSwitchCase="'select'"
+    [label]="field.label"
+    [options]="field.options ?? []"
+    [placeholder]="field.placeholder ?? ''"
+  ></app-selector>
+
    </div>
 
 
@@ -223,9 +263,155 @@
                
            </div>
 
+
+
+           <div class="advance_directive_information">
+
+             <label for="">Advance Directive</label>
+
+             <div class="formRow">
+
+            <ng-container *ngFor="let field of AdvanceDirectiveInformation">
+
+              <ng-container [ngSwitch]="field.inputType.toLowerCase()">
+
+
+     <div class="Col"  [ngClass]="{
+       'full-width': field.width === 'full',
+       'half-width': field.width === 'half'
+     }">
+
+
+  <app-text-input
+    *ngSwitchCase="['text', 'input', 'password'].includes(field.inputType) && field.inputType"
+    [type]="field.datatype"
+    [label]="field.label"
+    [placeholder]="field.placeholder ?? ''"
+    >
+  </app-text-input>
+
+  <app-check-box
+    *ngSwitchCase="'checkbox'"
+    [label]="field.label"
+  ></app-check-box>
+
+
+  <app-selector
+    *ngSwitchCase="'select'"
+    [label]="field.label"
+    [options]="field.options ?? []"
+    [placeholder]="field.placeholder ?? ''"
+  ></app-selector>
+
+   </div>
+
+
+
+                   
+         
+
+
+
+
+          
+
+                <!-- <app-select-field *ngSwitchCase="'select'" [field]="field"></app-select-field>
+                
+                <app-textarea-field *ngSwitchCase="'textarea'" [field]="field"></app-textarea-field>
+
+                <app-checkbox-field *ngSwitchCase="'checkbox'" [field]="field"></app-checkbox-field>
+
+                <app-radio-button-field *ngSwitchCase="'radio'" [field]="field"></app-radio-button-field>
+
+                <app-date-picker-field *ngSwitchCase="'date'" [field]="field"></app-date-picker-field> -->
+                 
+              </ng-container>
+                
+
+            </ng-container>
+
+             </div>
+               
+           </div>
+
+
+
+
+
+
             </ng-container>
 
             <ng-container *ngSwitchCase="'staff'">
+
+
+              <div class="personal_information">
+
+             <label for="">Staff Information</label>
+
+             <div class="formRow">
+
+            <ng-container *ngFor="let field of StaffInformation">
+
+              <ng-container [ngSwitch]="field.inputType.toLowerCase()">
+
+
+     <div class="Col"  [ngClass]="{
+       'full-width': field.width === 'full',
+       'half-width': field.width === 'half'
+     }">
+
+
+  <app-text-input
+    *ngSwitchCase="['text', 'input', 'password'].includes(field.inputType) && field.inputType"
+    [type]="field.datatype"
+    [label]="field.label"
+    [placeholder]="field.placeholder ?? ''"
+    >
+  </app-text-input>
+
+   <app-check-box
+    *ngSwitchCase="'checkbox'"
+    [label]="field.label"
+  ></app-check-box>
+
+
+  <app-selector
+    *ngSwitchCase="'select'"
+    [label]="field.label"
+    [options]="field.options ?? []"
+    [placeholder]="field.placeholder ?? ''"
+  ></app-selector>
+
+   </div>
+
+
+
+                   
+         
+
+
+
+
+          
+
+                <!-- <app-select-field *ngSwitchCase="'select'" [field]="field"></app-select-field>
+                
+                <app-textarea-field *ngSwitchCase="'textarea'" [field]="field"></app-textarea-field>
+
+                <app-checkbox-field *ngSwitchCase="'checkbox'" [field]="field"></app-checkbox-field>
+
+                <app-radio-button-field *ngSwitchCase="'radio'" [field]="field"></app-radio-button-field>
+
+                <app-date-picker-field *ngSwitchCase="'date'" [field]="field"></app-date-picker-field> -->
+                 
+              </ng-container>
+                
+
+            </ng-container>
+
+             </div>
+               
+            </div>
               
 
             </ng-container>
@@ -236,6 +422,24 @@
 
            
          
+      </div>
+
+
+      <div class="dioalog_action_section">
+
+          
+
+          <app-button
+            [buttonText]="'Discard'"
+    
+            [Style]="{'backgroundColor': 'white', color: '#284B5F',borderColor: '#284B5F',borderRadius:'8px', borderStyle:'solid' }"
+            
+          ></app-button>
+
+          <app-button
+            [buttonText]="'Submit Details'"
+          ></app-button>
+
       </div>
 
   </div>
