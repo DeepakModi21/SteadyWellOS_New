@@ -7,7 +7,7 @@ import { ToastrService } from 'ngx-toastr';
 import { CookieService } from 'ngx-cookie-service';
 import { MatInputModule } from '@angular/material/input';
 import { LoaderService } from '../../../Shared/services/loader.service';
-import { LoaderComponent } from '../../../Shared/loader/loader/loader.component';
+import { LoaderComponent } from '../../../Shared/pages/loader/loader/loader.component';
 
 
 

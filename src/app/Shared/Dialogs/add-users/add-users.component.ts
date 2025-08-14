@@ -32,13 +32,15 @@ import { TextInputComponent } from '../../pages/text-input/text-input.component'
 import { CheckBoxComponent } from '../../pages/check-box/check-box.component';
 import { SelectorComponent } from '../../pages/selector/selector.component';
 import { ButtonComponent } from '../../pages/button/button.component';
+import { TelephoneComponent } from '../../pages/telephone/telephone.component';
+import { MatIconModule } from '@angular/material/icon';
 
 
 
 
 @Component({
   selector: 'app-add-users',
-  imports: [MaterialModule, ReactiveFormsModule, CommonModule,TextInputComponent,FormsModule,CheckBoxComponent,SelectorComponent,ButtonComponent],
+  imports: [MaterialModule, ReactiveFormsModule, CommonModule,TextInputComponent,FormsModule,CheckBoxComponent,SelectorComponent,ButtonComponent,TelephoneComponent,MatIconModule],
   templateUrl: './add-users.component.html',
   styleUrl: './add-users.component.scss',
 })
@@ -144,8 +146,8 @@ PatientInformation:{label: string;
   },
   {
     label:'Clinical Phone Number',
-    inputType: 'text',
-    datatype: 'text',
+    inputType: 'telephone',
+    datatype: 'telephone',
     canEdit: true,
     control: 'clinical_phone_number',
     placeholder: 'Clinical Phone Number',
@@ -255,6 +257,16 @@ PersonalInformation: {
     ],
     width:'half'
   },
+
+  {
+    label: 'Phone Number',
+     inputType: 'telephone',
+    datatype: 'telephone',
+    canEdit: true,
+    control: 'phone_number',
+    placeholder: 'Enter your phone number',
+    width:'half'
+  },
   {
     label: 'Address',
     inputType: 'text',
@@ -264,15 +276,7 @@ PersonalInformation: {
     placeholder: 'Enter your full address',
     width:'full'
   },
-  {
-    label: 'Phone Number',
-     inputType: 'telephone',
-    datatype: 'telephone',
-    canEdit: true,
-    control: 'phone_number',
-    placeholder: 'Enter your phone number',
-    width:'half'
-  }
+  
 ];
 
 EmergencyContactInformation: {label: string;
@@ -294,8 +298,8 @@ EmergencyContactInformation: {label: string;
     },
      {
       label:'Phone Number',
-      inputType: 'text',
-      datatype: 'text',
+      inputType: 'telephone',
+      datatype: 'telephone',
       canEdit: true,
       control: 'emergency_contact_phone',
       placeholder: 'Enter Emergency Contact Name',

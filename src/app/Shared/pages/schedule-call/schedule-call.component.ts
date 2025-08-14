@@ -10,7 +10,7 @@ import { CommonModule } from '@angular/common';
 import { NavbarComponent } from '../../../Features/components/navbar/navbar.component';
 import { HttpClient } from '@angular/common/http';
 
-import { LoaderComponent } from '../../loader/loader/loader.component';
+import { LoaderComponent } from '../loader/loader/loader.component';
 import { CallsService } from '../../../Features/services/Calls/calls.service';
 import { PatientData } from '../../../Core/interfaces/Patients_interface';
 import {

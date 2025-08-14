@@ -74,7 +74,12 @@ private Dialog=inject(MatDialog);
 
 ngOnInit()
 {
-   this.Dialog.open(AddUsersComponent,{
+  
+}
+
+openAddUserDialog()
+{
+  this.Dialog.open(AddUsersComponent, {
     data: {
       Title: 'Add User Information',
       sub_title: 'Begin by selecting user type.',
@@ -82,7 +87,7 @@ ngOnInit()
     maxWidth: '900px',
     height: 'auto',
     panelClass: 'custom-dialog-container'
-   })
+  });
 }
 
 

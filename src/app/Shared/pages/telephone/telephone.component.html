@@ -1,0 +1,18 @@
+<div class="conatact_field_section">
+
+    <label class="tel_label" for="">{{label}}</label>
+    
+   <ngx-intl-tel-input
+      [preferredCountries]="preferredCountries"
+      [enableAutoCountrySelect]="false"
+      [enablePlaceholder]="true"
+      [searchCountryFlag]="true"
+    
+      [selectFirstCountry]="false"
+      [selectedCountryISO]="CountryISO.UnitedStates"
+      [maxLength]="15"
+      >
+    </ngx-intl-tel-input>
+
+</div>
+

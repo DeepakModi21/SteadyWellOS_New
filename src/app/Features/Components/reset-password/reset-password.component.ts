@@ -4,7 +4,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { LoaderService } from '../../../Shared/services/loader.service';
-import { LoaderComponent } from '../../../Shared/loader/loader/loader.component';
+import { LoaderComponent } from '../../../Shared/pages/loader/loader/loader.component';
 
 
 
