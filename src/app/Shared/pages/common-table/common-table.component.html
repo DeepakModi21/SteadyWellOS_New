@@ -1,0 +1,30 @@
+<div class="common-table-container">
+  <table class="common-table">
+    <thead>
+      <tr class="table_header_row">
+        <th *ngFor="let col of columns" (click)="onSort(col)" class="sortable">
+          <div class="header-with-icons">
+            <span>{{ col.label }}</span>
+            <span class="sort-icons">
+              <span class="up-arrow" [class.active]="sortColumn === col.key && sortDirection === 'asc'">▲</span>
+              <span class="down-arrow" [class.active]="sortColumn === col.key && sortDirection === 'desc'">▼</span>
+            </span>
+          </div>
+        </th>
+        <th *ngIf="showActions" class="actions-header">Actions</th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <tr *ngFor="let row of data" class="table_row">
+        <td *ngFor="let col of columns">{{ row[col.key] }}</td>
+
+        <td *ngIf="showActions" class="actions-cell">
+          <button class="action-btn view" (click)="onView(row)">View</button>
+          <button class="action-btn edit" (click)="onEdit(row)">Edit</button>
+          <button class="action-btn delete" (click)="onDelete(row)">Delete</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
