@@ -6,7 +6,7 @@ import { CookieService } from 'ngx-cookie-service';
 import { ToastrService } from 'ngx-toastr';
 import { MatDialog } from '@angular/material/dialog';
 import { DynamicDialogComponent } from '../../../Shared/Dialogs/dynamic-dialog/dynamic-dialog.component';
-import { LoaderComponent } from '../../../Shared/loader/loader/loader.component';
+import { LoaderComponent } from '../../../Shared/pages/loader/loader/loader.component';
 import { User } from '../../../Core/interfaces/auth_interface';
 import { CommonModule } from '@angular/common';
 import { AuthService } from '../../services/AuthSer/auth.service';

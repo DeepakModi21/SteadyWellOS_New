@@ -1,549 +1,479 @@
-<app-loader [isLoading]="loading"></app-loader>
-
-<!-- <div class="add-users-container"> -->
-  <mat-card class="form-card">
-   <mat-card-header>
-  <mat-card-title>
-    <mat-icon>{{ isEditMode ? 'edit' : 'person_add' }}</mat-icon>
-    {{ isEditMode ? 'Edit User' : 'Add New User' }}
-  </mat-card-title>
-  <mat-card-subtitle>
-    {{ isEditMode ? 'Update the user information below' : 'Please fill in all required information' }}
-  </mat-card-subtitle>
-</mat-card-header>
-
-    <!-- <mat-card-header>
-      <mat-card-title>
-
-         <ng-container *ngIf="!isEditMode else AddUser">
-
-           <mat-icon>person_add</mat-icon>
-        Add New User
-
-         </ng-container>
-
-         <ng-template #AddUser>
-
-          <mat-icon>edit</mat-icon>
-          Edit User
-         </ng-template>
+<div class="dialog_section" *ngIf="DialogData">
+   
+  <div class="dialog_container">
        
-      </mat-card-title>
-      <mat-card-subtitle>Please fill in all required information</mat-card-subtitle>
-    </mat-card-header> -->
+      <div class="dialog_header">
 
-    <mat-card-content>
-      <form [formGroup]="userForm" (ngSubmit)="onSubmit()" class="user-form">
-        
-        <!-- Common Details Section -->
-        <div class="form-section">
-          <h3 class="section-title">
-            <mat-icon>account_circle</mat-icon>
-            Personal Information
-          </h3>
+        <div class="header_content">
+                    
+        <h2>{{DialogData.Title}}</h2>
+        <p>{{DialogData.sub_title}}</p>
+
+        </div>
+
+        <div class="dialog_close">
+       
+  <mat-icon mat-dialog-close >cancel</mat-icon>
+
+
+        </div>
+
+
+      </div>
+     
+
+      <div class="dialog_information_body">
+
+        <!-- user type radio buttons  -->
+
+           <div class="user_types">
+
+            <label for="">User Type</label>
+
+
+      <div class="radio_group">
+  <label *ngFor="let user of UserTypes" class="custom_radio">
+    <input
+      type="radio"
+      name="userType"
+      [value]="user.value"
+      [(ngModel)]="UserType"
+      (change)="onUserTypeChange()"
+    />
+    <span class="radio_label">{{ user.label }}</span>
+  </label>
+</div>
+
+
+
+      
+
           
-          <div class="form-row">
+
+
+           </div>
+
+           <div class="personal_information">
+
+             <label for="">Personal Information</label>
+
+             <div class="formRow">
+
+            <ng-container *ngFor="let field of PersonalInformation">
+
+              <ng-container [ngSwitch]="field.inputType.toLowerCase()">
+
+
+     <div class="Col"  [ngClass]="{
+       'full-width': field.width === 'full',
+       'half-width': field.width === 'half'
+     }">
+
+
+  <app-text-input
+    *ngSwitchCase="['text', 'input', 'password'].includes(field.inputType) && field.inputType"
+    [type]="field.datatype"
+    [label]="field.label"
+    [placeholder]="field.placeholder ?? ''"
+    >
+  </app-text-input>
+
+   <app-check-box
+    *ngSwitchCase="'checkbox'"
+    [label]="field.label"
+  ></app-check-box>
+
+
+  <app-selector
+    *ngSwitchCase="'select'"
+    [label]="field.label"
+    [options]="field.options ?? []"
+    [placeholder]="field.placeholder ?? ''"
+  ></app-selector>
+
+
+  <app-telephone 
+    *ngSwitchCase="'telephone'">
+  </app-telephone>
+
+   </div>
+
+
+
+                   
+         
+
+
+
+
+          
+
+                <!-- <app-select-field *ngSwitchCase="'select'" [field]="field"></app-select-field>
+                
+                <app-textarea-field *ngSwitchCase="'textarea'" [field]="field"></app-textarea-field>
+
+                <app-checkbox-field *ngSwitchCase="'checkbox'" [field]="field"></app-checkbox-field>
+
+                <app-radio-button-field *ngSwitchCase="'radio'" [field]="field"></app-radio-button-field>
+
+                <app-date-picker-field *ngSwitchCase="'date'" [field]="field"></app-date-picker-field> -->
+                 
+              </ng-container>
+                
+
+            </ng-container>
+
+             </div>
+               
+           </div>
+
+
+           <!-- dynamic input based on user type  -->
+
+           <ng-container [ngSwitch]="UserType.toLowerCase()">
+
+            <ng-container *ngSwitchCase="'patient'">
+
+
+              <div class="patient_information">
+
+             <label for="">Patient Information</label>
+
+             <div class="formRow">
+
+            <ng-container *ngFor="let field of PatientInformation">
+
+              <ng-container [ngSwitch]="field.inputType.toLowerCase()">
+
+
+     <div class="Col"  [ngClass]="{
+       'full-width': field.width === 'full',
+       'half-width': field.width === 'half'
+     }">
+
+
+  <app-text-input
+    *ngSwitchCase="['text', 'input', 'password'].includes(field.inputType) && field.inputType"
+    [type]="field.datatype"
+    [label]="field.label"
+    [placeholder]="field.placeholder ?? ''"
+    >
+  </app-text-input>
+
+
+ <app-check-box
+    *ngSwitchCase="'checkbox'"
+    [label]="field.label"
+  ></app-check-box>
+
+
+  <app-selector
+    *ngSwitchCase="'select'"
+    [label]="field.label"
+    [options]="field.options ?? []"
+    [placeholder]="field.placeholder ?? ''"
+  ></app-selector>
+
+
+  <app-telephone 
+    *ngSwitchCase="'telephone'">
+  </app-telephone>
+
+   </div>
+
+
+
+                   
+         
+
+
+
+
+          
+
+                <!-- <app-select-field *ngSwitchCase="'select'" [field]="field"></app-select-field>
+                
+                <app-textarea-field *ngSwitchCase="'textarea'" [field]="field"></app-textarea-field>
+
+                <app-checkbox-field *ngSwitchCase="'checkbox'" [field]="field"></app-checkbox-field>
+
+                <app-radio-button-field *ngSwitchCase="'radio'" [field]="field"></app-radio-button-field>
+
+                <app-date-picker-field *ngSwitchCase="'date'" [field]="field"></app-date-picker-field> -->
+                 
+              </ng-container>
+                
+
+            </ng-container>
+
+             </div>
+               
+           </div>
+
+
+           <div class="Emergency_contact_information">
+
+             <label for="">Emergency Contact</label>
+
+             <div class="formRow">
+
+            <ng-container *ngFor="let field of EmergencyContactInformation">
+
+              <ng-container [ngSwitch]="field.inputType.toLowerCase()">
+
+
+     <div class="Col"  [ngClass]="{
+       'full-width': field.width === 'full',
+       'half-width': field.width === 'half'
+     }">
+
+
+  <app-text-input
+    *ngSwitchCase="['text', 'input', 'password'].includes(field.inputType) && field.inputType"
+    [type]="field.datatype"
+    [label]="field.label"
+    [placeholder]="field.placeholder ?? ''"
+    >
+  </app-text-input>
+
+   <app-check-box
+    *ngSwitchCase="'checkbox'"
+    [label]="field.label"
+  ></app-check-box>
+
+
+  <app-selector
+    *ngSwitchCase="'select'"
+    [label]="field.label"
+    [options]="field.options ?? []"
+    [placeholder]="field.placeholder ?? ''"
+  ></app-selector>
+
+
+  <app-telephone 
+    *ngSwitchCase="'telephone'">
+  </app-telephone>
+
+   </div>
+
+
+
+                   
+         
+
+
+
+
+          
+
+                <!-- <app-select-field *ngSwitchCase="'select'" [field]="field"></app-select-field>
+                
+                <app-textarea-field *ngSwitchCase="'textarea'" [field]="field"></app-textarea-field>
+
+                <app-checkbox-field *ngSwitchCase="'checkbox'" [field]="field"></app-checkbox-field>
+
+                <app-radio-button-field *ngSwitchCase="'radio'" [field]="field"></app-radio-button-field>
+
+                <app-date-picker-field *ngSwitchCase="'date'" [field]="field"></app-date-picker-field> -->
+                 
+              </ng-container>
+                
+
+            </ng-container>
+
+             </div>
+               
+           </div>
+
+
+
+           <div class="advance_directive_information">
+
+             <label for="">Advance Directive</label>
+
+             <div class="formRow">
+
+            <ng-container *ngFor="let field of AdvanceDirectiveInformation">
+
+              <ng-container [ngSwitch]="field.inputType.toLowerCase()">
+
+
+     <div class="Col"  [ngClass]="{
+       'full-width': field.width === 'full',
+       'half-width': field.width === 'half'
+     }">
+
+
+  <app-text-input
+    *ngSwitchCase="['text', 'input', 'password'].includes(field.inputType) && field.inputType"
+    [type]="field.datatype"
+    [label]="field.label"
+    [placeholder]="field.placeholder ?? ''"
+    >
+  </app-text-input>
+
+  <app-check-box
+    *ngSwitchCase="'checkbox'"
+    [label]="field.label"
+  ></app-check-box>
+
+
+  <app-selector
+    *ngSwitchCase="'select'"
+    [label]="field.label"
+    [options]="field.options ?? []"
+    [placeholder]="field.placeholder ?? ''"
+  ></app-selector>
+
+
+  <app-telephone 
+    *ngSwitchCase="'telephone'">
+  </app-telephone>
+
+   </div>
+
+
+
+                   
+         
+
+
+
+
+          
+
+                <!-- <app-select-field *ngSwitchCase="'select'" [field]="field"></app-select-field>
+                
+                <app-textarea-field *ngSwitchCase="'textarea'" [field]="field"></app-textarea-field>
+
+                <app-checkbox-field *ngSwitchCase="'checkbox'" [field]="field"></app-checkbox-field>
+
+                <app-radio-button-field *ngSwitchCase="'radio'" [field]="field"></app-radio-button-field>
+
+                <app-date-picker-field *ngSwitchCase="'date'" [field]="field"></app-date-picker-field> -->
+                 
+              </ng-container>
+                
+
+            </ng-container>
+
+             </div>
+               
+           </div>
+
+
+
+
+
+
+            </ng-container>
+
+            <ng-container *ngSwitchCase="'staff'">
+
+
+              <div class="personal_information">
+
+             <label for="">Staff Information</label>
+
+             <div class="formRow">
+
+            <ng-container *ngFor="let field of StaffInformation">
+
+              <ng-container [ngSwitch]="field.inputType.toLowerCase()">
+
+
+     <div class="Col"  [ngClass]="{
+       'full-width': field.width === 'full',
+       'half-width': field.width === 'half'
+     }">
+
+
+  <app-text-input
+    *ngSwitchCase="['text', 'input', 'password'].includes(field.inputType) && field.inputType"
+    [type]="field.datatype"
+    [label]="field.label"
+    [placeholder]="field.placeholder ?? ''"
+    >
+  </app-text-input>
+
+   <app-check-box
+    *ngSwitchCase="'checkbox'"
+    [label]="field.label"
+  ></app-check-box>
+
+
+  <app-selector
+    *ngSwitchCase="'select'"
+    [label]="field.label"
+    [options]="field.options ?? []"
+    [placeholder]="field.placeholder ?? ''"
+  ></app-selector>
+
+
+  <app-telephone 
+    *ngSwitchCase="'telephone'">
+  </app-telephone>
+
+   </div>
+
+
+
+                   
+         
+
+
+
+
+          
+
+                <!-- <app-select-field *ngSwitchCase="'select'" [field]="field"></app-select-field>
+                
+                <app-textarea-field *ngSwitchCase="'textarea'" [field]="field"></app-textarea-field>
+
+                <app-checkbox-field *ngSwitchCase="'checkbox'" [field]="field"></app-checkbox-field>
+
+                <app-radio-button-field *ngSwitchCase="'radio'" [field]="field"></app-radio-button-field>
+
+                <app-date-picker-field *ngSwitchCase="'date'" [field]="field"></app-date-picker-field> -->
+                 
+              </ng-container>
+                
+
+            </ng-container>
+
+             </div>
+               
+            </div>
+              
+
+            </ng-container>
+
+             
+
+           </ng-container>
+
+           
+         
+      </div>
+
+
+      <div class="dioalog_action_section">
+
+          
+
+          <app-button
+            [buttonText]="'Discard'"
     
-  <mat-form-field class="half-width" appearance="outline">
-    <mat-label>First Name</mat-label>
-    <input matInput formControlName="first_name" placeholder="Enter first name" autocomplete="given-name">
-    <mat-icon matSuffix>person</mat-icon>
-    <mat-error *ngIf="hasError('first_name')">{{ getErrorMessage('first_name') }}</mat-error>
-  </mat-form-field>
- 
-  <mat-form-field class="half-width" appearance="outline">
-    <mat-label>Last Name</mat-label>
-    <input matInput formControlName="last_name" placeholder="Enter last name" autocomplete="family-name">
-    <mat-icon matSuffix>person</mat-icon>
-    <mat-error *ngIf="hasError('last_name')">{{ getErrorMessage('last_name') }}</mat-error>
-  </mat-form-field>
+            [Style]="{'backgroundColor': 'white', color: '#284B5F',borderColor: '#284B5F',borderRadius:'8px', borderStyle:'solid' }"
+            
+          ></app-button>
+
+          <app-button
+            [buttonText]="'Submit Details'"
+          ></app-button>
+
+      </div>
+
+  </div>
+   
 </div>
-
-        <div class="form-row" *ngIf="userForm.get('role')?.value.toLowerCase()=='nurse'">
-  <mat-form-field class="half-width" appearance="outline">
-    <mat-label>Username</mat-label>
-    <input matInput formControlName="username" placeholder="Choose a username" autocomplete="username">
-    <mat-icon matSuffix>account_circle</mat-icon>
-    <mat-error *ngIf="hasError('username')">{{ getErrorMessage('username') }}</mat-error>
-  </mat-form-field>
-  </div>
-
-
-          <div class="form-row">
-            <mat-form-field  class="half-width" appearance="outline">
-              <mat-label>Email Address</mat-label>
-              <input matInput 
-                     formControlName="email" 
-                     type="email"
-                     placeholder="Enter email address"
-                     autocomplete="email">
-              <mat-icon matSuffix>email</mat-icon>
-              <mat-error *ngIf="hasError('email')">
-                {{ getErrorMessage('email') }}
-              </mat-error>
-            </mat-form-field>
-
-            <mat-form-field  class="half-width" appearance="outline">
-              <mat-label>Phone Number</mat-label>
-              <input matInput 
-                     formControlName="phone_number" 
-                     placeholder="Enter phone number"
-                     autocomplete="tel">
-              <mat-icon matSuffix>phone</mat-icon>
-              <mat-error *ngIf="hasError('phoneNumber')">
-                {{ getErrorMessage('phoneNumber') }}
-              </mat-error>
-            </mat-form-field>
-          </div>
-
-          <!-- <div class="form-row">
-            <mat-form-field  class="three-quarter-width">
-              <mat-label>Address</mat-label>
-              <textarea matInput 
-                        formControlName="address" 
-                        placeholder="Enter complete address"
-                        rows="2"
-                        autocomplete="street-address"></textarea>
-              <mat-icon matSuffix>location_on</mat-icon>
-              <mat-error *ngIf="hasError('address')">
-                {{ getErrorMessage('address') }}
-              </mat-error>
-            </mat-form-field>
-
-            <mat-form-field  class="quarter-width">
-              <mat-label>Gender</mat-label>
-              <mat-select formControlName="gender">
-                <mat-option *ngFor="let gender of genderOptions" 
-                            [value]="gender.value">
-                  {{ gender.label }}
-                </mat-option>
-              </mat-select>
-              <mat-error *ngIf="hasError('gender')">
-                {{ getErrorMessage('gender') }}
-              </mat-error>
-            </mat-form-field>
-          </div> -->
-        </div>
-
-        <!-- User Type Selection -->
-        <div class="form-section" *ngIf="!isEditMode">
-          <h3 class="section-title">
-            <mat-icon>assignment_ind</mat-icon>
-        Role
-          </h3>
-          
-          <mat-radio-group formControlName="role" 
-                          (change)="onUserTypeChange($event.value)"
-                          class="user-type-radio-group">
-            <mat-radio-button value="nurse" class="user-type-option">
-              <div class="radio-content">
-                <mat-icon>local_hospital</mat-icon>
-                <span>Nurse</span>
-              </div>
-            </mat-radio-button>
-            
-            <!-- <mat-radio-button value="physician" class="user-type-option">
-              <div class="radio-content">
-                <mat-icon>medical_services</mat-icon>
-                <span>Physician</span>
-              </div>
-            </mat-radio-button> -->
-            
-            <mat-radio-button value="patient" class="user-type-option">
-              <div class="radio-content">
-                <mat-icon>person</mat-icon>
-                <span>Patient</span>
-              </div>
-            </mat-radio-button>
-          </mat-radio-group>
-          
-          <mat-error *ngIf="hasError('role')" class="user-type-error">
-            {{ getErrorMessage('role') }}
-          </mat-error>
-        </div>
-
-        <!-- Dynamic Form Fields -->
-        <div class="form-section" *ngIf="selectedUserType">
-          
-          <!-- Patient Specific Fields -->
-          <div *ngIf="selectedUserType === 'patient'" class="dynamic-section">
-            <h3 class="section-title">
-              <mat-icon>person</mat-icon>
-              Patient Information
-            </h3>
-            
-            <!-- <div class="form-row">
-              <mat-form-field  class="half-width">
-                <mat-label>MRN Code</mat-label>
-                <input matInput 
-                       formControlName="mrnCode" 
-                       placeholder="e.g., MRN123456"
-                       >
-                <mat-icon matSuffix>badge</mat-icon>
-                <mat-hint>Format: MRN followed by 6-10 digits</mat-hint>
-                <mat-error *ngIf="hasError('mrnCode')">
-                  {{ getErrorMessage('mrnCode') }}
-                </mat-error>
-              </mat-form-field>
-
-              <mat-form-field  class="half-width">
-                <mat-label>Patient Type</mat-label>
-                <mat-select formControlName="patientType">
-                  <mat-option *ngFor="let type of patientTypeOptions" 
-                              [value]="type.value">
-                    {{ type.label }}
-                  </mat-option>
-                </mat-select>
-                <mat-error *ngIf="hasError('patientType')">
-                  {{ getErrorMessage('patientType') }}
-                </mat-error>
-              </mat-form-field>
-            </div>
-
-            <div class="form-row">
-              <mat-form-field  class="half-width">
-                <mat-label>Primary Disease/Condition</mat-label>
-                <input matInput 
-                       formControlName="disease" 
-                       placeholder="Enter primary condition">
-                <mat-icon matSuffix>healing</mat-icon>
-                <mat-error *ngIf="hasError('disease')">
-                  {{ getErrorMessage('disease') }}
-                </mat-error>
-              </mat-form-field>
-
-              <mat-form-field  class="half-width">
-                <mat-label>Years with Condition</mat-label>
-                <input matInput 
-                       formControlName="yearsWithCondition" 
-                       type="number" 
-                       min="0" 
-                       max="120"
-                       placeholder="Enter years">
-                <mat-icon matSuffix>schedule</mat-icon>
-                <mat-error *ngIf="hasError('yearsWithCondition')">
-                  {{ getErrorMessage('yearsWithCondition') }}
-                </mat-error>
-              </mat-form-field>
-            </div>
-
-            <div class="form-row">
-              <mat-form-field  class="full-width">
-                <mat-label>Emergency Contact Number</mat-label>
-                <input matInput 
-                       formControlName="emergencyContact" 
-                       placeholder="Enter emergency contact number">
-                <mat-icon matSuffix>emergency</mat-icon>
-                <mat-error *ngIf="hasError('emergencyContact')">
-                  {{ getErrorMessage('emergencyContact') }}
-                </mat-error>
-              </mat-form-field>
-            </div> -->
-
-  <!-- MRN -->
-  <div class="form-row">
-    <mat-form-field class="full-width" appearance="outline">
-      <mat-label>MRN</mat-label>
-      <input matInput formControlName="mrn" placeholder="Enter MRN">
-      <mat-error *ngIf="userForm.get('mrn')?.hasError('required')">MRN is required</mat-error>
-      <mat-error *ngIf="userForm.get('mrn')?.hasError('pattern')">Invalid MRN format</mat-error>
-    </mat-form-field>
-  </div>
-
-  <!-- Date of Birth & Gender -->
-  <div class="form-row">
-    <mat-form-field class="half-width" appearance="outline">
-      <mat-label>Date of Birth</mat-label>
-      <input matInput [matDatepicker]="dobPicker" formControlName="date_of_birth" placeholder="Choose a date">
-      <mat-datepicker-toggle matSuffix [for]="dobPicker"></mat-datepicker-toggle>
-      <mat-datepicker #dobPicker></mat-datepicker>
-      <mat-error *ngIf="userForm.get('date_of_birth')?.hasError('required')">Date of birth is required</mat-error>
-    </mat-form-field>
-
-    <mat-form-field class="half-width" appearance="outline">
-      <mat-label>Gender</mat-label>
-      <mat-select formControlName="gender">
-        <mat-option value="male">Male</mat-option>
-        <mat-option value="female">Female</mat-option>
-        <mat-option value="other">Other</mat-option>
-      </mat-select>
-      <mat-error *ngIf="userForm.get('gender')?.hasError('required')">Gender is required</mat-error>
-    </mat-form-field>
-  </div>
-
-  <!-- Address -->
-  <div class="form-row">
-    <mat-form-field class="full-width" appearance="outline">
-      <mat-label>Address</mat-label>
-      <textarea matInput formControlName="address" placeholder="Enter address"></textarea>
-      <mat-error *ngIf="userForm.get('address')?.hasError('required')">Address is required</mat-error>
-      <mat-error *ngIf="userForm.get('address')?.hasError('minlength')">Address must be at least 10 characters</mat-error>
-    </mat-form-field>
-  </div>
-
-  <!-- Diagnoses -->
-  <div class="form-row">
-    <mat-form-field class="half-width" appearance="outline">
-      <mat-label>Primary Diagnosis</mat-label>
-      <input matInput formControlName="primary_diagnosis" placeholder="Enter primary diagnosis">
-      <mat-error *ngIf="userForm.get('primary_diagnosis')?.hasError('required')">Primary diagnosis is required</mat-error>
-    </mat-form-field>
-
-    <mat-form-field class="half-width" appearance="outline">
-      <mat-label>Secondary Diagnoses</mat-label>
-      <input matInput formControlName="secondary_diagnoses" placeholder="Enter secondary diagnoses">
-    </mat-form-field>
-  </div>
-
-  <!-- Protocol & Nurse -->
-  <div class="form-row">
-    <mat-form-field class="half-width" appearance="outline">
-      <mat-label>Protocol Type</mat-label>
-      <mat-select formControlName="protocol_type">
-        <mat-option *ngFor="let protocol of protocolTypeOptions" [value]="protocol.value">{{protocol.label}}</mat-option>
- 
-      </mat-select>
-      <mat-error *ngIf="userForm.get('protocol_type')?.hasError('required')">Protocol type is required</mat-error>
-    </mat-form-field>
-
-    <mat-form-field class="half-width" appearance="outline">
-      <mat-label>Primary Nurse ID</mat-label>
-      <input matInput type="number" formControlName="primary_nurse_id" placeholder="Enter nurse ID">
-      <mat-error *ngIf="userForm.get('primary_nurse_id')?.hasError('required')">Nurse ID is required</mat-error>
-    </mat-form-field>
-  </div>
-
-  <!-- Emergency Contact -->
-  <div class="form-row">
-    <mat-form-field class="half-width" appearance="outline">
-      <mat-label>Emergency Contact Name</mat-label>
-      <input matInput formControlName="emergency_contact_name" placeholder="Enter contact name">
-      <mat-error *ngIf="userForm.get('emergency_contact_name')?.hasError('required')">Contact name is required</mat-error>
-    </mat-form-field>
-
-    <mat-form-field class="half-width" appearance="outline">
-      <mat-label>Emergency Contact Phone</mat-label>
-      <input matInput formControlName="emergency_contact_phone" placeholder="Enter phone number">
-      <mat-error *ngIf="userForm.get('emergency_contact_phone')?.hasError('required')">Phone number is required</mat-error>
-      <mat-error *ngIf="userForm.get('emergency_contact_phone')?.hasError('pattern')">Enter valid 10-digit phone number</mat-error>
-    </mat-form-field>
-  </div>
-
-  <div class="form-row">
-    <mat-form-field class="half-width" appearance="outline">
-      <mat-label>Relationship</mat-label>
-      <input matInput formControlName="emergency_contact_relationship" placeholder="e.g. Brother, Mother">
-      <mat-error *ngIf="userForm.get('emergency_contact_relationship')?.hasError('required')">Relationship is required</mat-error>
-    </mat-form-field>
-
-    <mat-checkbox formControlName="emergency_contact_can_share_medical_info">
-      Can Share Medical Info
-    </mat-checkbox>
-  </div>
-
-  <!-- Advance Directive -->
-  <div class="form-row">
-    <mat-checkbox formControlName="advance_directive">Advance Directive</mat-checkbox>
-
-    <mat-form-field class="half-width" appearance="outline" *ngIf="userForm.get('advance_directive')?.value">
-      <mat-label>Advance Directive Status</mat-label>
-      <mat-select formControlName="advance_directive_status">
-        <mat-option value="complete">Complete</mat-option>
-        <mat-option value="pending">Pending</mat-option>
-      </mat-select>
-      <mat-error *ngIf="userForm.get('advance_directive_status')?.hasError('required')">Status is required</mat-error>
-    </mat-form-field>
-  </div>
-
-  <!-- DNR -->
-  <div class="form-row">
-    <mat-checkbox formControlName="dnr_status">DNR Status</mat-checkbox>
-  </div>
-
-  <!-- Allergies & Notes -->
-  <div class="form-row">
-    <mat-form-field class="half-width" appearance="outline">
-      <mat-label>Allergies</mat-label>
-      <input matInput formControlName="allergies" placeholder="Enter allergies">
-    </mat-form-field>
-
-    <mat-form-field class="half-width" appearance="outline">
-      <mat-label>Notes</mat-label>
-      <textarea matInput formControlName="notes" placeholder="Enter additional notes"></textarea>
-    </mat-form-field>
-  </div>
-
-
-          </div>
-
-          <!-- Physician Specific Fields -->
-          <!-- <div *ngIf="selectedUserType === 'physician'" class="dynamic-section">
-            <h3 class="section-title">
-              <mat-icon>medical_services</mat-icon>
-              Physician Information
-            </h3>
-            
-            <div class="form-row">
-              <mat-form-field  class="half-width">
-                <mat-label>Medical License Number</mat-label>
-                <input matInput 
-                       formControlName="licenseNumber" 
-                       placeholder="e.g., MD123456"
-                       >
-                <mat-icon matSuffix>assignment</mat-icon>
-                <mat-hint>Format: Two letters followed by 6-8 digits</mat-hint>
-                <mat-error *ngIf="hasError('licenseNumber')">
-                  {{ getErrorMessage('licenseNumber') }}
-                </mat-error>
-              </mat-form-field>
-
-              <mat-form-field  class="half-width">
-                <mat-label>Specialty</mat-label>
-                <mat-select formControlName="specialty">
-                  <mat-option *ngFor="let specialty of specialtyOptions" 
-                              [value]="specialty.value">
-                    {{ specialty.label }}
-                  </mat-option>
-                </mat-select>
-                <mat-error *ngIf="hasError('specialty')">
-                  {{ getErrorMessage('specialty') }}
-                </mat-error>
-              </mat-form-field>
-            </div>
-
-            <div class="form-row">
-              <mat-form-field  class="half-width">
-                <mat-label>Years of Experience</mat-label>
-                <input matInput 
-                       formControlName="yearsOfExperience" 
-                       type="number" 
-                       min="0" 
-                       max="50"
-                       placeholder="Enter years of experience">
-                <mat-icon matSuffix>work</mat-icon>
-                <mat-error *ngIf="hasError('yearsOfExperience')">
-                  {{ getErrorMessage('yearsOfExperience') }}
-                </mat-error>
-              </mat-form-field>
-
-              <mat-form-field  class="half-width">
-                <mat-label>Hospital Affiliation</mat-label>
-                <input matInput 
-                       formControlName="hospitalAffiliation" 
-                       placeholder="Enter hospital name">
-                <mat-icon matSuffix>local_hospital</mat-icon>
-                <mat-error *ngIf="hasError('hospitalAffiliation')">
-                  {{ getErrorMessage('hospitalAffiliation') }}
-                </mat-error>
-              </mat-form-field>
-            </div>
-          </div> -->
-
-          <!-- Nurse Specific Fields -->
-          <div *ngIf="selectedUserType === 'nurse'" class="dynamic-section">
-            <h3 class="section-title">
-              <mat-icon>local_hospital</mat-icon>
-              Nurse Information
-            </h3>
-            
-            <div class="form-row">
-              <mat-form-field  class="half-width" appearance="outline">
-                <mat-label>Nursing License Number</mat-label>
-                <input matInput 
-                       formControlName="license_number" 
-                       placeholder="e.g., RN123456"
-                       >
-                <mat-icon matSuffix>card_membership</mat-icon>
-                <mat-hint>Format: RN followed by 6-8 digits</mat-hint>
-                <mat-error *ngIf="hasError('license_number')">
-                  {{ getErrorMessage('license_number') }}
-                </mat-error>
-              </mat-form-field>
-
-
-                <div class="form-row">
-  <mat-form-field class="half-width" appearance="outline" *ngIf="!isEditMode">
-    <mat-label>Password</mat-label>
-    <input matInput [type]="passwordVisible ? 'text' : 'password'" formControlName="password" placeholder="Enter password" autocomplete="new-password">
-    <button mat-icon-button matSuffix type="button" (click)="passwordVisible = !passwordVisible">
-      <mat-icon>{{ passwordVisible ? 'visibility_off' : 'visibility' }}</mat-icon>
-    </button>
-    <mat-error *ngIf="hasError('password')">{{ getErrorMessage('password') }}</mat-error>
-  </mat-form-field>
-</div>
-
-              <!-- <mat-form-field  class="half-width">
-                <mat-label>Department</mat-label>
-                <mat-select formControlName="department">
-                  <mat-option *ngFor="let dept of departmentOptions" 
-                              [value]="dept.value">
-                    {{ dept.label }}
-                  </mat-option>
-                </mat-select>
-                <mat-error *ngIf="hasError('department')">
-                  {{ getErrorMessage('department') }}
-                </mat-error>
-              </mat-form-field> -->
-            </div>
-
-            <!-- <div class="form-row">
-              <mat-form-field  class="half-width">
-                <mat-label>Shift Preference</mat-label>
-                <mat-select formControlName="shiftPreference">
-                  <mat-option value="day">Day Shift (7AM - 7PM)</mat-option>
-                  <mat-option value="night">Night Shift (7PM - 7AM)</mat-option>
-                  <mat-option value="rotating">Rotating Shifts</mat-option>
-                  <mat-option value="flexible">Flexible</mat-option>
-                </mat-select>
-                <mat-error *ngIf="hasError('shiftPreference')">
-                  {{ getErrorMessage('shiftPreference') }}
-                </mat-error>
-              </mat-form-field>
-
-              <mat-form-field  class="half-width">
-                <mat-label>Certifications</mat-label>
-                <input matInput 
-                       formControlName="certifications" 
-                       placeholder="e.g., BLS, ACLS, PALS">
-                <mat-icon matSuffix>verified</mat-icon>
-                <mat-hint>Separate multiple certifications with commas</mat-hint>
-                <mat-error *ngIf="hasError('certifications')">
-                  {{ getErrorMessage('certifications') }}
-                </mat-error>
-              </mat-form-field>
-            </div> -->
-          </div>
-        </div>
-
-        <!-- Form Actions -->
-        <div class="form-actions">
-          <button  mat-raised-button 
-                  type="button" 
-                  color="warn" 
-                  (click)="onCancel()"
-                  class="action-button">
-            <mat-icon>cancel</mat-icon>
-            Cancel
-          </button>
-          
-          <button mat-raised-button *ngIf="!isEditMode"
-                  type="button" 
-                  (click)="resetForm()"
-                  class="action-button">
-            <mat-icon>refresh</mat-icon>
-            Reset
-          </button>
-          
-       <button mat-raised-button 
-        type="submit" 
-        color="primary" 
-        class="action-button submit-button">
-  <mat-icon>{{ isEditMode ? 'update' : 'save' }}</mat-icon>
-  {{ isEditMode ? 'Update User' : 'Add User' }}
-</button>
-
-        </div>
-      </form>
-    </mat-card-content>
-  </mat-card>
-<!-- </div> -->

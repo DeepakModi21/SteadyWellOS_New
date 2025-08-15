@@ -243,3 +243,23 @@ color: #007AFF;
   .recent_activity_cards::-webkit-scrollbar-thumb:hover {
     background: #284B5F !important
   }
+
+
+  .recent_activity_cards::-webkit-scrollbar,
+.urgent_follow_ups_cards::-webkit-scrollbar,
+.table_cards::-webkit-scrollbar {
+  width: 5px; /* scrollbar width */
+}
+
+.recent_activity_cards::-webkit-scrollbar-thumb,
+.urgent_follow_ups_cards::-webkit-scrollbar-thumb,
+.table_cards::-webkit-scrollbar-thumb {
+  background-color: #888; /* scrollbar thumb color */
+  border-radius: 4px;
+}
+
+.recent_activity_cards::-webkit-scrollbar-thumb:hover,
+.urgent_follow_ups_cards::-webkit-scrollbar-thumb:hover,
+.table_cards::-webkit-scrollbar-thumb:hover {
+   background: #284B5F !important
+}

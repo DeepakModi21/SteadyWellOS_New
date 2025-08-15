@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { MaterialModule } from '../../../Shared/Material Module/material.module';
 import { TableComponent } from '../../../Shared/pages/table/table.component';
 import { CardLayoutComponent } from '../card-layout/card-layout.component';
@@ -6,11 +6,14 @@ import { CommonModule } from '@angular/common';
 import { UrgentFollowUpsComponent } from '../urgent-follow-ups/urgent-follow-ups.component';
 import { RecentActivityComponent } from '../../../Shared/pages/recent-activity/recent-activity.component';
 import { PieChartComponent } from '../pie-chart/pie-chart.component';
+import { MatDialog } from '@angular/material/dialog';
+import { AddUsersComponent } from '../../../Shared/Dialogs/add-users/add-users.component';
+import { SelectorComponent } from '../../../Shared/pages/selector/selector.component';
 
 
 @Component({
   selector: 'app-dashboard',
-  imports: [MaterialModule,TableComponent,CardLayoutComponent,CommonModule,UrgentFollowUpsComponent,RecentActivityComponent, PieChartComponent],
+  imports: [MaterialModule,TableComponent,CardLayoutComponent,CommonModule,UrgentFollowUpsComponent,RecentActivityComponent, PieChartComponent,SelectorComponent],
   templateUrl: './dashboard.component.html',
   styleUrl: './dashboard.component.scss'
 })
@@ -66,6 +69,26 @@ export class DashboardComponent {
     type: 'info'
   }
 ];
+
+private Dialog=inject(MatDialog);
+
+ngOnInit()
+{
+  
+}
+
+openAddUserDialog()
+{
+  this.Dialog.open(AddUsersComponent, {
+    data: {
+      Title: 'Add User Information',
+      sub_title: 'Begin by selecting user type.',
+    },
+    maxWidth: '900px',
+    height: 'auto',
+    panelClass: 'custom-dialog-container'
+  });
+}
 
 
 }

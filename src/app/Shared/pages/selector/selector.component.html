@@ -1,0 +1,14 @@
+<div class="selector_section">
+      <div class="selector_container">
+          
+          <mat-label class="selector_label">{{label}}</mat-label>
+        <mat-form-field appearance="outline" class="mat_select_field">
+  <mat-select [placeholder]="placeholder" >
+
+    <mat-option class="selector_option" *ngFor="let option of options" [value]="option.value">{{option.label}}</mat-option>
+ 
+  </mat-select>
+</mat-form-field>
+         
+      </div>
+</div>
