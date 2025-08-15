@@ -1,0 +1,99 @@
+
+.date_picker_section
+{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+
+    ::ng-deep .date_picker .mdc-text-field--outlined:not(.mdc-text-field--disabled) .mat-mdc-notch-piece
+    {
+      border-color: #D2D5DA !important;
+    }
+
+    .date_picker
+    {
+        font-family: 'Optima' !important;
+        height: 46px !important;
+
+        ::ng-deep .mat-mdc-text-field-wrapper
+        {
+           height: 100% !important;
+        }
+
+        ::ng-deep .mat-mdc-form-field-infix
+        {
+            width: 100% !important;
+            min-height: 46px !important;
+            display: flex !important;
+            align-items: center;
+            padding: 0px !important;
+
+        } 
+
+        ::ng-deep .mat-mdc-icon-button svg
+        {
+          color: #1A202C !important;
+        }
+
+        input::placeholder
+        {
+            font-family: Optima;
+font-weight: 400;
+font-style: Normal;
+font-size: 16px;
+// leading-trim: NONE;
+color: #718096 !important;
+line-height: 100%;
+letter-spacing: 0%;
+
+        }
+
+     
+       
+    }
+}
+
+::ng-deep .mat-datepicker-content{
+    background-color: white !important;
+    border-color: #E5E7F0 !important;
+    box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px !important;
+    
+}
+
+ 
+
+::ng-deep .mat-calendar-body-cell-content:first-child {
+  color: #494E50 ;
+  border-top-left-radius: 8px !important;    /* Adjust as needed */
+  border-bottom-left-radius: 8px !important; /* Adjust as needed */
+  border-top-right-radius: 0px !important;
+  border-bottom-right-radius: 0px !important;
+}
+
+
+
+::ng-deep .mat-calendar-body-in-range::before
+{
+    background-color: #B1CFD6 !important;
+}
+
+::ng-deep .mat-calendar-body-selected
+{
+    background-color: #284B5F !important;
+    color: white !important;
+}
+
+
+::ng-deep .mat-calendar-body-today:not(.mat-calendar-body-selected):not(.mat-calendar-body-comparison-identical)
+{
+    border-color: #284B5F !important;
+    border-radius: 6px !important;
+    background-color: transparent !important;
+}
+
+
+::ng-deep .mat-calendar-table-header th
+{
+    color: #284B5F !important;
+} 

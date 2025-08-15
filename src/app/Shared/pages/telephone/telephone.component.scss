@@ -56,3 +56,12 @@ color: #718096 !important;
 
 
 }
+
+
+::ng-deep .locked-country-input
+{
+    .dropdown-toggle
+    {
+        pointer-events: none !important;
+    }
+}

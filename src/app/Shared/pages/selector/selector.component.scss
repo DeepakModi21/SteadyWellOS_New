@@ -10,6 +10,7 @@
     flex-direction: column;
      gap: 10px;
     width: 100%;
+    outline: none !important;
 
 
     ::ng-deep .mat_select_field
@@ -77,6 +78,12 @@
 }
 
 
+::ng-deep .mdc-text-field--outlined:not(.mdc-text-field--disabled).mdc-text-field--focused .mdc-notched-outline .mat-mdc-notch-piece
+{
+   border-width: 1px !important;
+}
+
+
 
 
 
@@ -98,4 +105,20 @@ color:#1A202C !important;
 {
     background-color: white !important;
 } 
+
+
+.selector_section ::ng-deep .mdc-text-field--outlined:not(.mdc-text-field--disabled).mdc-text-field--invalid .mat-mdc-notch-piece
+{
+    border-color: #ba1a1a !important;
+}
+
+.invalid
+{
+    margin-bottom: 20px !important;
+
+    ::ng-deep .mat-mdc-select-placeholder
+    {
+       color: #ba1a1a !important;
+    }
+}
 

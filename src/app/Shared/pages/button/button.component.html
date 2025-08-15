@@ -1,6 +1,6 @@
 <div class="button_section">
     <div class="button_container">
-        <button mat-flat-button class="button" [ngStyle]="Style">
+        <button (click)="onButtonClick()" mat-flat-button class="button" [ngStyle]="Style">
             <span class="button_text">{{buttonText}}</span>
              <mat-icon *ngIf="icon">{{icon}}</mat-icon>
         </button>

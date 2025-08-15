@@ -34,13 +34,15 @@ import { SelectorComponent } from '../../pages/selector/selector.component';
 import { ButtonComponent } from '../../pages/button/button.component';
 import { TelephoneComponent } from '../../pages/telephone/telephone.component';
 import { MatIconModule } from '@angular/material/icon';
+import { RadioButtonsComponent } from '../../pages/radio-buttons/radio-buttons.component';
+import { every } from 'rxjs';
 
 
 
 
 @Component({
   selector: 'app-add-users',
-  imports: [MaterialModule, ReactiveFormsModule, CommonModule,TextInputComponent,FormsModule,CheckBoxComponent,SelectorComponent,ButtonComponent,TelephoneComponent,MatIconModule],
+  imports: [MaterialModule, ReactiveFormsModule, CommonModule,TextInputComponent,FormsModule,CheckBoxComponent,SelectorComponent,ButtonComponent,TelephoneComponent,MatIconModule,RadioButtonsComponent],
   templateUrl: './add-users.component.html',
   styleUrl: './add-users.component.scss',
 })
@@ -56,6 +58,8 @@ export class AddUsersComponent implements OnInit {
 
   UserType: string = 'patient'; // Default user type
 
+
+
 constructor(
   @Inject(MAT_DIALOG_DATA) 
   public data: { 
@@ -63,7 +67,8 @@ constructor(
     sub_title: string; 
     EditMode?: boolean; 
     UserData?: Array<any>;
-  }
+  },
+  private dialogRef:MatDialogRef<DynamicDialogComponent>
 ) 
 
 {
@@ -94,8 +99,10 @@ constructor(
     emergency_contact_phone: new FormControl(''),
     emergency_contact_relationship: new FormControl(''),
     allow_sharing_medical_info: new FormControl(false),
-
-
+    advance_directive_status:new FormControl('',Validators.required),
+    dnr_status: new FormControl(''),
+    adavance_directive_on_file:new FormControl(''),
+    clinical_notes:new FormControl(''),
   })
 
     this.StaffInfoGroup = new FormGroup({
@@ -106,10 +113,6 @@ constructor(
     });
 
   this.MainForm.push(this.PersonalInfoGroup);
-
-  this.MainForm.push(this.PatientInfoGroup);
-
-  this.MainForm.push(this.StaffInfoGroup);
 }
 
 UserTypes: {label:string, value:string}[] = [
@@ -342,7 +345,7 @@ AdvanceDirectiveInformation: {
     inputType: 'select',
     datatype: 'select',
     canEdit: true,
-    control: 'advance_directive',
+    control: 'advance_directive_status',
     placeholder: 'Select Advance Directive',
     width: 'half'
   },
@@ -369,7 +372,7 @@ AdvanceDirectiveInformation: {
     inputType: 'text',
     datatype: 'text',
     canEdit: true,
-    control: 'dnr_status',
+    control: 'clinical_notes',
     placeholder: 'Clinical Notes',
     width: 'full'
   }
@@ -457,13 +460,41 @@ getFormControlByName(index: number, controlName: string): FormControl {
 
 
 
-onUserTypeChange()
+onUserTypeChange(Event:{selectedValue:string})
 {
-    console.log("User Type is",this.UserType);
+
+  this.UserType=Event.selectedValue;
+  
+    if(Event.selectedValue && Event.selectedValue.toLowerCase()=='staff')
+    {
+      this.MainForm.removeAt(1);
+
+      this.MainForm.push(this.StaffInfoGroup);
+      this.MainForm.updateValueAndValidity();
+    }
+
+    else if(Event.selectedValue && Event.selectedValue.toLowerCase()=='patient')
+    {
+      this.MainForm.removeAt(1);
+      this.MainForm.push(this.PatientInfoGroup);
+      this.MainForm.updateValueAndValidity();
+    }
 }
 
   ngOnInit(): void {
+
+   
     
+  }
+
+  Discard()
+  {
+     this.dialogRef.close();
+  }
+
+  onSubmitDetails()
+  {
+    console.log("Form Submitted", this.MainForm.value);
   }
   
 }

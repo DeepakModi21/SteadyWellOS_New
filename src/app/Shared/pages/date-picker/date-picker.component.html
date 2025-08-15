@@ -1,0 +1,15 @@
+<div class="date_picker_section">
+  <mat-label>{{label}}</mat-label>
+
+  <mat-form-field class="date_picker" appearance="outline">
+     <input [formControl]="FormControl" matInput [min]="minDate"  [matDatepicker]="picker" />
+  <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+  <mat-datepicker #picker></mat-datepicker>
+  </mat-form-field> 
+</div>
+
+
+
+
+
+

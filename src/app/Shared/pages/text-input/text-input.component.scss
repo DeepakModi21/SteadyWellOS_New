@@ -67,4 +67,26 @@ font-size: 16px;
 line-height: 100%;
 letter-spacing: 0%;
 color: #718096 !important;
+outline: none !important;
+}
+
+.text_input_section ::ng-deep .mdc-text-field--outlined:not(.mdc-text-field--disabled).mdc-text-field--invalid .mat-mdc-notch-piece
+{
+    border-color: #ba1a1a !important;
+}
+
+
+.text_input_section ::ng-deep .mdc-text-field--outlined:not(.mdc-text-field--disabled).mdc-text-field--focused .mdc-notched-outline .mat-mdc-notch-piece
+{
+   border-width: 1px !important;
+}
+
+.invalid
+{
+    margin-bottom: 20px !important;
+
+    input::placeholder
+    {
+        color: #ba1a1a !important;
+    }
 }

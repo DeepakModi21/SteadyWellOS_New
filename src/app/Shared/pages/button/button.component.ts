@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { MaterialModule } from '../../Material Module/material.module';
 import { CommonModule } from '@angular/common';
 
@@ -46,6 +46,8 @@ export class ButtonComponent {
 
   @Input() buttonText: string = 'Click Me!';
 
+  @Output() onClick:EventEmitter<void> = new EventEmitter<void>();
+
   @Input() icon: string = '';
 
    @Input() Style: ButtonStyle = {
@@ -63,5 +65,12 @@ export class ButtonComponent {
 };
 
   @Input() disabled: boolean = false;
+
+
+  onButtonClick() {
+    if (!this.disabled) {
+      this.onClick.emit();
+    }
+  }
 
 }

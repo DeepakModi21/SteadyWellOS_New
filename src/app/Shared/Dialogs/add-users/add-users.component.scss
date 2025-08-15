@@ -225,6 +225,9 @@ color: #2C3B44;
       position: relative;
       cursor: pointer;
       outline: none;
+      display: flex !important;
+      justify-content: center !important;
+      align-items: center !important;
 
       &:checked {
         // background-color: #007bff;
@@ -239,8 +242,8 @@ color: #2C3B44;
           border-radius: 50%;
           position: absolute;
            background-color: #284B5F;
-          top: 2px;
-          left: 2.5px;
+          // top: 2px;
+          // left: 2.5px;
         }
       }
     }

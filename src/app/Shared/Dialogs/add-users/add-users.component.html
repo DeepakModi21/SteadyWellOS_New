@@ -1,3 +1,5 @@
+<!-- <mat-icon>alarm_add</mat-icon> -->
+
 <div class="dialog_section" *ngIf="DialogData">
    
   <div class="dialog_container">
@@ -12,8 +14,9 @@
         </div>
 
         <div class="dialog_close">
+          	
        
-  <mat-icon mat-dialog-close >cancel</mat-icon>
+  <!-- <mat-icon mat-dialog-close >cancel</mat-icon> -->
 
 
         </div>
@@ -29,27 +32,8 @@
            <div class="user_types">
 
             <label for="">User Type</label>
-
-
-      <div class="radio_group">
-  <label *ngFor="let user of UserTypes" class="custom_radio">
-    <input
-      type="radio"
-      name="userType"
-      [value]="user.value"
-      [(ngModel)]="UserType"
-      (change)="onUserTypeChange()"
-    />
-    <span class="radio_label">{{ user.label }}</span>
-  </label>
-</div>
-
-
-
-      
-
-          
-
+               
+            <app-radio-buttons (valueChanges)="onUserTypeChange($event)" [RaddioGroups]="UserTypes" [DefaultValue]="'patient'"></app-radio-buttons>
 
            </div>
 
@@ -75,12 +59,14 @@
     [type]="field.datatype"
     [label]="field.label"
     [placeholder]="field.placeholder ?? ''"
+    [FormControl]="getFormControlByName(0,field.control)"
     >
   </app-text-input>
 
    <app-check-box
     *ngSwitchCase="'checkbox'"
     [label]="field.label"
+    [FormControl]="getFormControlByName(0,field.control)"
   ></app-check-box>
 
 
@@ -89,11 +75,15 @@
     [label]="field.label"
     [options]="field.options ?? []"
     [placeholder]="field.placeholder ?? ''"
+    [FormControl]="getFormControlByName(0,field.control)"
   ></app-selector>
 
+  
 
   <app-telephone 
-    *ngSwitchCase="'telephone'">
+    *ngSwitchCase="'telephone'"
+    [FormControl]="getFormControlByName(0,field.control)"
+    >
   </app-telephone>
 
    </div>
@@ -157,6 +147,7 @@
     [type]="field.datatype"
     [label]="field.label"
     [placeholder]="field.placeholder ?? ''"
+    [FormControl]="getFormControlByName(1,field.control)"
     >
   </app-text-input>
 
@@ -164,6 +155,7 @@
  <app-check-box
     *ngSwitchCase="'checkbox'"
     [label]="field.label"
+    [FormControl]="getFormControlByName(1,field.control)"
   ></app-check-box>
 
 
@@ -172,11 +164,14 @@
     [label]="field.label"
     [options]="field.options ?? []"
     [placeholder]="field.placeholder ?? ''"
+    [FormControl]="getFormControlByName(1,field.control)"
   ></app-selector>
 
 
   <app-telephone 
-    *ngSwitchCase="'telephone'">
+    *ngSwitchCase="'telephone'"
+    [FormControl]="getFormControlByName(1,field.control)"
+    >
   </app-telephone>
 
    </div>
@@ -233,12 +228,14 @@
     [type]="field.datatype"
     [label]="field.label"
     [placeholder]="field.placeholder ?? ''"
+    [FormControl]="getFormControlByName(1,field.control)"
     >
   </app-text-input>
 
    <app-check-box
     *ngSwitchCase="'checkbox'"
     [label]="field.label"
+    [FormControl]="getFormControlByName(1,field.control)"
   ></app-check-box>
 
 
@@ -247,11 +244,14 @@
     [label]="field.label"
     [options]="field.options ?? []"
     [placeholder]="field.placeholder ?? ''"
+    [FormControl]="getFormControlByName(1,field.control)"
   ></app-selector>
 
 
   <app-telephone 
-    *ngSwitchCase="'telephone'">
+    *ngSwitchCase="'telephone'"
+    [FormControl]="getFormControlByName(1,field.control)"
+    >
   </app-telephone>
 
    </div>
@@ -393,12 +393,14 @@
     [type]="field.datatype"
     [label]="field.label"
     [placeholder]="field.placeholder ?? ''"
+    [FormControl]="getFormControlByName(1,field.control)"
     >
   </app-text-input>
 
    <app-check-box
     *ngSwitchCase="'checkbox'"
     [label]="field.label"
+    [FormControl]="getFormControlByName(1,field.control)"
   ></app-check-box>
 
 
@@ -407,11 +409,14 @@
     [label]="field.label"
     [options]="field.options ?? []"
     [placeholder]="field.placeholder ?? ''"
+    [FormControl]="getFormControlByName(1,field.control)"
   ></app-selector>
 
 
   <app-telephone 
-    *ngSwitchCase="'telephone'">
+    *ngSwitchCase="'telephone'"
+    [FormControl]="getFormControlByName(1,field.control)"
+    >
   </app-telephone>
 
    </div>
@@ -463,6 +468,8 @@
 
           <app-button
             [buttonText]="'Discard'"
+
+            (onClick)="Discard()"
     
             [Style]="{'backgroundColor': 'white', color: '#284B5F',borderColor: '#284B5F',borderRadius:'8px', borderStyle:'solid' }"
             
@@ -470,6 +477,7 @@
 
           <app-button
             [buttonText]="'Submit Details'"
+            (onClick)="onSubmitDetails()"
           ></app-button>
 
       </div>

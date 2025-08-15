@@ -1,0 +1,61 @@
+  .radio_group ::ng-deep .mat-mdc-radio-button .mdc-radio
+    {
+      padding: 0px !important;
+    }
+
+    .radio_group {
+  display: flex;
+  gap: 1rem;
+
+  .custom_radio {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+
+    input[type="radio"] {
+      appearance: none;
+      width: 15px;
+      height: 15px;
+      border: 2px solid #284B5F;
+      border-radius: 50%;
+      margin-right: 8px;
+      position: relative;
+      cursor: pointer;
+      outline: none;
+      display: flex !important;
+      justify-content: center !important;
+      align-items: center !important;
+
+      &:checked {
+        // background-color: #007bff;
+       
+        border-color: #284B5F;
+
+        &::after {
+          content: '';
+          width: 8px;
+          height: 9px;
+          background: white;
+          border-radius: 50%;
+          position: absolute;
+           background-color: #284B5F;
+          // top: 2px;
+          // left: 2.5px;
+        }
+      }
+    }
+
+    .radio_label {
+      font-size: 14px;
+      font-family: Optima;
+font-weight: 400;
+font-style: Normal;
+font-size: 16px;
+// leading-trim: NONE;
+line-height: 100%;
+letter-spacing: 0%;
+color:#2C3B44 !important;
+
+    }
+  }
+}

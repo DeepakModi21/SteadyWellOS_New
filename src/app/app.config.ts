@@ -11,6 +11,7 @@ import { provideCharts, withDefaultRegisterables } from 'ng2-charts';
 export const appConfig: ApplicationConfig = {
   providers: [provideZoneChangeDetection({ eventCoalescing: true }),
       provideCharts(withDefaultRegisterables()),
+      // provideNgxMask(),
 
      provideAnimations(), // required animations providers
    provideToastr({
@@ -22,3 +23,7 @@ export const appConfig: ApplicationConfig = {
     
     provideRouter(routes)]
 };
+function provideNgxMask(): import("@angular/core").Provider | import("@angular/core").EnvironmentProviders {
+  throw new Error('Function not implemented.');
+}
+

@@ -1,0 +1,12 @@
+  <div class="radio_group">
+  <label *ngFor="let radioButton of RaddioGroups" class="custom_radio">
+    <input
+      type="radio"
+      name="userType"
+      [value]="radioButton.value"
+      [formControl]="FormControl"
+      (change)="onRadioChange($event)"
+    />
+    <span class="radio_label">{{ radioButton.label }}</span>
+  </label>
+</div>
