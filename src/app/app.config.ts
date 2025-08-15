@@ -8,10 +8,13 @@ import { provideHttpClient, withInterceptors } from '@angular/common/http';
 import { authInterceptor } from './Core/Interceptors/auth_interceptor';
 import { provideCharts, withDefaultRegisterables } from 'ng2-charts';
 
+import { provideNgxMask } from 'ngx-mask';
+
+
 export const appConfig: ApplicationConfig = {
   providers: [provideZoneChangeDetection({ eventCoalescing: true }),
       provideCharts(withDefaultRegisterables()),
-      // provideNgxMask(),
+      provideNgxMask(),
 
      provideAnimations(), // required animations providers
    provideToastr({
@@ -23,7 +26,5 @@ export const appConfig: ApplicationConfig = {
     
     provideRouter(routes)]
 };
-function provideNgxMask(): import("@angular/core").Provider | import("@angular/core").EnvironmentProviders {
-  throw new Error('Function not implemented.');
-}
+
 

@@ -30,7 +30,7 @@ import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
     .spinner-border {
       width: 3rem;
       height: 3rem;
-      border: 0.25em solid  #4F46E5;
+      border: 0.25em solid  #284B5F;
       
       border-top: 0.25em solid  #f3f3f3;
       border-radius: 50%;

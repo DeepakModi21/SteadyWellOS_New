@@ -4,7 +4,6 @@ import { CommonModule } from '@angular/common';
 import { NgxIntlTelInputModule, PhoneNumberFormat, SearchCountryField } from 'ngx-intl-tel-input';
 import { CountryISO } from 'ngx-material-intl-tel-input';
 import { FormControl, ReactiveFormsModule } from '@angular/forms';
-import { InputMaskDirective } from '../../Directives/input-mask.directive';
 
 
 @Component({

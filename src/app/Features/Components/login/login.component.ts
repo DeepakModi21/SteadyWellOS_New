@@ -19,7 +19,7 @@ import { LoaderComponent } from '../../../Shared/pages/loader/loader/loader.comp
 })
 export class LoginComponent {
 
-  Loading:boolean=false;
+  // Loading:boolean=true;
 
 
   loginForm: FormGroup;

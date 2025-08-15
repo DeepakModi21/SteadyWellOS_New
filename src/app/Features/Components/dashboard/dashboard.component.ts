@@ -10,14 +10,17 @@ import { MatDialog } from '@angular/material/dialog';
 import { AddUsersComponent } from '../../../Shared/Dialogs/add-users/add-users.component';
 import { SelectorComponent } from '../../../Shared/pages/selector/selector.component';
 import { ButtonComponent } from '../../../Shared/pages/button/button.component';
-import { DateRangeComponent } from '../../../Shared/pages/date-range/date-range.component';
 import { FormControl } from '@angular/forms';
-import { DatePickerComponent } from '../../../Shared/pages/date-picker/date-picker.component';
+
+import { NumberMaskDirective } from '../../../Shared/Directives/NumberMask/number-mask.directive';
+import { NgxMaskDirective } from 'ngx-mask';
+
+
 
 
 @Component({
   selector: 'app-dashboard',
-  imports: [MaterialModule,TableComponent,CardLayoutComponent,CommonModule,UrgentFollowUpsComponent,RecentActivityComponent, PieChartComponent,ButtonComponent,DatePickerComponent],
+  imports: [MaterialModule,TableComponent,CardLayoutComponent,CommonModule,UrgentFollowUpsComponent,RecentActivityComponent, PieChartComponent,ButtonComponent,NgxMaskDirective],
   templateUrl: './dashboard.component.html',
   styleUrl: './dashboard.component.scss'
 })
@@ -78,6 +81,8 @@ export class DashboardComponent {
 ];
 
 private Dialog=inject(MatDialog);
+
+
 
 ngOnInit()
 {
