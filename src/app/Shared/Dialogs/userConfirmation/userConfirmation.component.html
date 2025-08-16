@@ -1,0 +1,46 @@
+
+    <div class="dialog-container">
+      <div class="warning-icon">
+        
+        <mat-icon class="shield-icon" [style.color]="data.iconColor">
+  {{ data.icon }}
+</mat-icon>
+
+<mat-icon class="exclamation-icon">priority_high</mat-icon>
+
+
+      </div>
+      
+
+      <div class="dialog_information">
+
+      <h2 class="dialog-title">{{data.title}}</h2>
+      
+      <p class="dialog-message">
+          {{data.message}}
+      </p>
+
+      </div>
+
+      
+      <div class="dialog-actions">
+
+
+        <ng-container *ngIf="data.showCancelButton">
+
+          <app-button [Style]="data.cancelButtonStyle ?? {}" [buttonText]="data.cancelButtonText ?? 'Cancel'" [icon]="data.cancelButtonicon ?? ''" (onClick)="onCancel()"></app-button>
+
+        </ng-container>
+
+        <ng-container *ngIf="data.showOkayButton">
+
+          <app-button [icon]="data.okayButtonicon ?? ''" [Style]="data.okayButtonStyle ?? {}" [buttonText]="data.okayButtonText ?? 'Okay'" (onClick)="onOkay()"></app-button>
+
+        </ng-container>
+
+
+        
+
+      </div>
+    </div>
+  

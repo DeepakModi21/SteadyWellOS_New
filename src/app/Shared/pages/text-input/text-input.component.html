@@ -2,14 +2,20 @@
   <div class="text_input">
     <mat-label class="input_label">{{ label }}</mat-label>
 
-    <mat-form-field appearance="outline" class="text_mat_form_field">
-      <input
-        matInput
-        [formControl]="FormControl"
-        [type]="type"
-        [placeholder]="placeholder ?? ''"
-        class="text_input_field"
-      />
+   <mat-form-field appearance="outline" class="text_mat_form_field">
+
+    <input
+    matInput
+    [formControl]="FormControl"
+    [placeholder]="placeholder ?? ''"
+    [mask]="customMask ? customMaskKey : DefaultMask"
+    [patterns]="customMask ? customMaskPattern : defaultMaskPattern"
+   [appUpperCase]="forceUpperCase"
+    [validation]="true"
+    class="text_input_field"
+  />
+
+     
 
       <!-- Only the first matching error will be shown -->
       <mat-error *ngIf="FormControl.hasError('required') && (FormControl.dirty || FormControl.touched)">

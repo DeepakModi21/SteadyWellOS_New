@@ -1,6 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { DynamicDialogComponent } from './dynamic-dialog.component';
+import { DynamicDialogComponent } from './userConfirmation.component';
 
 describe('DynamicDialogComponent', () => {
   let component: DynamicDialogComponent;

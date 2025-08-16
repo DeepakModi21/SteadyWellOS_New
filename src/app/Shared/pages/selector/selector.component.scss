@@ -92,7 +92,7 @@
 ::ng-deep .selector_option .mdc-list-item__primary-text
 {
 
-   font-family: Optima;
+   font-family: Optima !important;
 font-weight: 400;
 font-style: Normal;
 font-size: 16px;
@@ -106,6 +106,17 @@ color:#1A202C !important;
     background-color: white !important;
 } 
 
+
+::ng-deep .mat-pseudo-checkbox-full.mat-pseudo-checkbox-checked
+{
+
+  background-color: #284B5F !important;
+  border-color: #284B5F !important;
+}
+
+::ng-deep .mat-mdc-option:hover:not(.mdc-list-item--disabled) {
+    background: #ffffffdb !important;
+}
 
 .selector_section ::ng-deep .mdc-text-field--outlined:not(.mdc-text-field--disabled).mdc-text-field--invalid .mat-mdc-notch-piece
 {

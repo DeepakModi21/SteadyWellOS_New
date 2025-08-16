@@ -26,8 +26,6 @@ import {
   MatDialogRef,
 } from '@angular/material/dialog';
 
-
-import { DynamicDialogComponent } from '../dynamic-dialog/dynamic-dialog.component';
 import { TextInputComponent } from '../../pages/text-input/text-input.component';
 import { CheckBoxComponent } from '../../pages/check-box/check-box.component';
 import { SelectorComponent } from '../../pages/selector/selector.component';
@@ -35,9 +33,7 @@ import { ButtonComponent } from '../../pages/button/button.component';
 import { TelephoneComponent } from '../../pages/telephone/telephone.component';
 import { MatIconModule } from '@angular/material/icon';
 import { RadioButtonsComponent } from '../../pages/radio-buttons/radio-buttons.component';
-import { every } from 'rxjs';
-
-
+import { userConfirmationComponent } from '../userConfirmation/userConfirmation.component';
 
 
 @Component({
@@ -68,7 +64,7 @@ constructor(
     EditMode?: boolean; 
     UserData?: Array<any>;
   },
-  private dialogRef:MatDialogRef<DynamicDialogComponent>
+  private dialogRef:MatDialogRef<userConfirmationComponent>
 ) 
 
 {
@@ -81,7 +77,7 @@ constructor(
 
   this.PersonalInfoGroup = new FormGroup({
     full_name: new FormControl('', Validators.required),
-    email: new FormControl('', [Validators.required, Validators.email]),
+    email: new FormControl('', [Validators.required]),
     phone_number: new FormControl('', Validators.required),
     address: new FormControl('', Validators.required),
     gender: new FormControl('', Validators.required),
@@ -131,7 +127,7 @@ PatientInformation:{label: string;
   {
     label:'MRN',
     inputType: 'text',
-    datatype: 'text',
+    datatype: 'number',
     canEdit: true,
     control: 'mrn',
     placeholder: 'MRN',
@@ -168,7 +164,7 @@ PatientInformation:{label: string;
    {
     label:'Patient Type',
     inputType: 'select',
-    datatype: 'select',
+    datatype: 'multiSelect',
     canEdit: true,
     control: 'patient_type',
     placeholder: 'Patient Type',
@@ -388,17 +384,20 @@ StaffInformation: {
   control: string;
   placeholder?: string;
   options?: Array<{label: string, value: string}>;
+  customMask?:Record<string, { pattern: RegExp; optional?: boolean; symbol?: string }>;
   width: string;
+  forceUpperCase?:boolean
 }[] = [
   {
-    label: 'License Number',
-    inputType: 'text',
-    datatype: 'number',
-    canEdit: true,
-    control: 'license_number',
-    placeholder: 'Enter License Number',
-    width: 'half'
-  },
+  label: 'License Number',
+  inputType: 'text',
+  datatype: 'mixed',
+  canEdit: true,
+  control: 'license_number',
+  placeholder: 'Enter License Number',
+  width: 'half',
+  forceUpperCase:true,
+},
   {
     label: 'Department',
     inputType: 'select',

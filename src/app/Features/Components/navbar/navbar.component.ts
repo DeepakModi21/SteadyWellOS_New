@@ -5,12 +5,13 @@ import { CookieService } from 'ngx-cookie-service';
 
 import { ToastrService } from 'ngx-toastr';
 import { MatDialog } from '@angular/material/dialog';
-import { DynamicDialogComponent } from '../../../Shared/Dialogs/dynamic-dialog/dynamic-dialog.component';
-import { LoaderComponent } from '../../../Shared/pages/loader/loader/loader.component';
+
+
 import { User } from '../../../Core/interfaces/auth_interface';
 import { CommonModule } from '@angular/common';
 import { AuthService } from '../../services/AuthSer/auth.service';
-import { ChangePasswordComponent } from '../../../Shared/Dialogs/changePassword/change-password/change-password.component';
+
+import { userConfirmationComponent } from '../../../Shared/Dialogs/userConfirmation/userConfirmation.component';
 
 
 
@@ -53,18 +54,23 @@ export class NavbarComponent {
 
   onLogout() {
     this.dialog
-      .open(DynamicDialogComponent, {
-        data: {
-          icon: 'logout', // Material icon name
-          title: 'Logout Confirmation', // Dialog title
-          message: 'Are you sure you want to logout?', // Required message
-          showCancel: true, // Show Cancel button
-          showOk: true, // Show OK button
-          cancelText: 'No', // Custom Cancel text
-          okText: 'Yes', // Custom OK text
-          iconColor: '#EF4444',
-        },
-        width: '300px',
+      .open(userConfirmationComponent, {
+    data: {
+  title: 'Logout Confirmation',
+  message: 'Are you sure you want to log out?',
+  icon: 'logout', // You can also use 'exit_to_app' depending on your design
+  iconColor: 'red',
+  
+  showCancelButton: true,
+  cancelButtonStyle: { backgroundColor: 'white', color: '#1A202C', borderColor: '#1A202C',borderStyle:'solid',borderRadius:'8px' },
+  cancelButtonText: 'Cancel',
+
+  showOkayButton: true,
+  okayButtonStyle: { backgroundColor: '#E53E3E',borderRadius:'8px' },
+  okayButtonText: 'Logout'
+},
+
+        width: '320px',
       })
       .afterClosed()
       .subscribe((result) => {

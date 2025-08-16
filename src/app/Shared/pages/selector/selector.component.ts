@@ -15,6 +15,8 @@ export class SelectorComponent {
 
   @Input() label: string = 'Select an option';
 
+  @Input()multiSelect:boolean=false;
+
   @Input() placeholder: string = 'Choose...';
 
   @Input()FormControl:FormControl = new FormControl();

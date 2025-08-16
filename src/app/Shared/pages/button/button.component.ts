@@ -1,39 +1,7 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { MaterialModule } from '../../Material Module/material.module';
 import { CommonModule } from '@angular/common';
-
-export interface ButtonStyle {
-  backgroundColor?: string;
-  color?: string;
-  borderRadius?: string;
-  padding?: string;
-  fontSize?: string;
-  border?: string;
-  cursor?: string;
-  borderColor?: string;
-  boxShadow?: string;
-  fontFamily?: string;
-  fontWeight?: string;
-  fontStyle?: string;
-  transition?: string;
-  borderWidth?: string;
-  boderRadius?: string;
-  textDecoration?: string;
-  textTransform?: string;
-  width?: string;
-  height?: string;
-  display?: string;
-  alignItems?: string;
-  justifyContent?: string;
-  flexDirection?: string;
-  margin?: string;
-  flex?: string;  
-  position?: string;
-  top?: string;
-  borderStyle?: string;
-}
-
-
+import {ButtonStyle} from '../../../Core/interfaces/buttonStyle';
 
 
 @Component({
